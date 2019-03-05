@@ -1,0 +1,28 @@
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - google-chrome-stable
+      - git
+      - ftp
+      - jq
+      - telnet
+      - tmux
+      - python3
+      - smbclient
+      - nmap
+      - sqlmap
+      - wpscan
+      - dnsrecon
+      - hashcat
+      - hydra
+      - aircrack-ng
+      - airgraph-ng
+      - kismet
+  tasks:
+    - name: install deb packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
