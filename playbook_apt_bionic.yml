@@ -8,18 +8,44 @@
       - ftp
       - jq
       - telnet
+      - netcat
+      - socat
+      - rdesktop
+      - nbtscan
       - tmux
+      - vim
+      - python
+      - python-pip
       - python3
-      - smbclient
+      - python3-pip
+      - samba
+      - cifs-utils
+      - python-impacket
+      - python-scapy
+      - python3-scapy
+      - scanssh
       - nmap
+      - zenmap
       - sqlmap
-      - wpscan
+        #      - wpscan
       - dnsrecon
+      - ncrack
+      - onesixtyone
+      - cewl
+      - john
       - hashcat
       - hydra
+      - recon-ng
       - aircrack-ng
       - airgraph-ng
       - kismet
+      - wireshark
+      - hunt
+      - mdbtools
+      - p7zip-full
+      - pst-utils
+      - libimage-exiftool-perl
+      - beef
   tasks:
     - name: install deb packages
       apt:
