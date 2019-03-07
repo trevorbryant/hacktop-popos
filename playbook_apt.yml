@@ -12,15 +12,18 @@
       - socat
       - rdesktop
       - nbtscan
+      - samba-common-bin
+      - smbclient
       - tmux
       - vim
+      - golang-go
       - python
       - python-pip
       - python3
       - python3-pip
       - samba
       - cifs-utils
-      - python-impacket
+        #      - python-impacket
       - python-scapy
       - python3-scapy
       - scanssh

@@ -1,0 +1,15 @@
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - impacket
+        #      - pshtt
+      - dirhunt 
+  tasks:
+    - name: install pip packages
+      pip:
+        name: "{{ item }}"
+        state: present
+        extra_args: --upgrade
+      loop: "{{ packages }}"
