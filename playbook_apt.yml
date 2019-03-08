@@ -14,6 +14,8 @@
       - nbtscan
       - samba-common-bin
       - smbclient
+      - polenum
+      - ldap-utils
       - tmux
       - vim
       - golang-go
@@ -23,7 +25,6 @@
       - python3-pip
       - samba
       - cifs-utils
-        #      - python-impacket
       - python-scapy
       - python3-scapy
       - scanssh
