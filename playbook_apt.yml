@@ -3,7 +3,6 @@
   become: true
   vars:
     packages:
-            #      - google-chrome-stable
       - git
       - ftp
       - jq
@@ -31,7 +30,6 @@
       - nmap
       - zenmap
       - sqlmap
-        #      - wpscan
       - dnsrecon
       - ncrack
       - onesixtyone
@@ -49,6 +47,7 @@
       - p7zip-full
       - pst-utils
       - libimage-exiftool-perl
+      - steghide  
       - beef
   tasks:
     - name: install deb packages
