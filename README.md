@@ -25,10 +25,10 @@ $ apt -y install python-apt
 Perform a dry run:
 
 ```bash
-$ sudo ansible-playbook playbooks/playbook_apt_bionic.yml --check
+$ sudo ansible-playbook playbook_apt-utils.yml --check
 ```
 Run playbook and install tools to localhost:
 
 ```bash
-$ sudo ansible-playbook playbooks/playbook_apt_bionic.yml
+$ sudo ansible-playbook playbook_apt-utils.yml
 ```

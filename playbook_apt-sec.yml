@@ -3,31 +3,16 @@
   become: true
   vars:
     packages:
-      - git
-      - ftp
-      - jq
-      - telnet
-      - netcat
-      - socat
-      - rdesktop
       - nbtscan
       - samba-common-bin
       - smbclient
       - polenum
       - ldap-utils
-      - tmux
-      - vim
-      - golang-go
-      - python
-      - python-pip
-      - python3
-      - python3-pip
       - samba
       - cifs-utils
       - python-scapy
       - python3-scapy
       - scanssh
-      - nmap
       - zenmap
       - sqlmap
       - dnsrecon

@@ -1,0 +1,14 @@
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - pshtt 
+  tasks:
+    - name: install pip3 packages
+      pip:
+        name: "{{ item }}"
+        executable: pip3
+        state: present
+        extra_args: --upgrade
+      loop: "{{ packages }}"

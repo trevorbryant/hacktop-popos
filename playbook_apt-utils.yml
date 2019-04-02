@@ -1,0 +1,26 @@
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - git
+      - ftp
+      - jq
+      - telnet
+      - netcat
+      - socat
+      - rdesktop
+      - tmux
+      - vim
+      - golang-go
+      - python
+      - python-pip
+      - python3
+      - python3-pip
+      - nmap
+  tasks:
+    - name: install deb packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"

@@ -4,7 +4,6 @@
   vars:
     packages:
       - impacket
-        #      - pshtt
       - dirhunt
       - crackmapexec 
   tasks:
