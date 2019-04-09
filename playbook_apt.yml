@@ -108,7 +108,7 @@
         name: "{{ item }}"
         executable: pip3
         state: present
-        extra_args: "{{ packages }}"
+        extra_args: --upgrade
       loop: "{{ packages }}"
   tags:
     - pip3-sec
