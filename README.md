@@ -36,6 +36,7 @@ $ sudo ansible-playbook playbook_apt.yml --list-tasks
 Install or skip specific tasks:
 ```bash
 $ sudo ansible-playbook playbook_apt.yml --tags "deb-utils,pip3-sec"
+$ sudo ansible-playbook playbook_apt.yml --skip-tags "deb-sec,pip-sec"
 ```
 
 Run playbook and all install tools to localhost:
