@@ -25,10 +25,21 @@ $ apt -y install python-apt
 Perform a dry run:
 
 ```bash
-$ sudo ansible-playbook playbook_apt-utils.yml --check
+$ sudo ansible-playbook playbook_apt.yml --check
 ```
-Run playbook and install tools to localhost:
+
+List tasks or tags:
+```bash
+$ sudo ansible-playbook playbook_apt.yml --list-tasks
+```
+
+Install or skip specific tasks:
+```bash
+$ sudo ansible-playbook playbook_apt.yml --tags "deb-utils,pip3-sec"
+```
+
+Run playbook and all install tools to localhost:
 
 ```bash
-$ sudo ansible-playbook playbook_apt-utils.yml
+$ sudo ansible-playbook playbook_apt.yml
 ```

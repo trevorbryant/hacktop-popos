@@ -1,0 +1,114 @@
+- name: deb-utils
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - git
+      - ftp
+      - jq
+      - telnet
+      - netcat
+      - socat
+      - rdesktop
+      - tmux
+      - vim
+      - golang-go
+      - python
+      - python-pip
+      - python3
+      - python3-pip
+      - nmap
+      - docker.io
+  tasks:
+    - name: install deb-utils packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
+  tags:
+    - deb-utils
+
+- name: deb-sec
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - nbtscan
+      - samba-common-bin
+      - smbclient
+      - polenum
+      - ldap-utils
+      - samba
+      - cifs-utils
+      - python-scapy
+      - python3-scapy
+      - scanssh
+      - zenmap
+      - sqlmap
+      - dnsrecon
+      - ncrack
+      - onesixtyone
+      - cewl
+      - john
+      - hashcat
+      - hydra
+      - recon-ng
+      - aircrack-ng
+      - airgraph-ng
+      - kismet
+      - wireshark
+      - tshark
+      - hunt
+      - mdbtools
+      - pst-utils
+      - p7zip-full
+      - libimage-exiftool-perl
+      - steghide
+      - beef
+  tasks:
+    - name: install deb-sec packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
+  tags:
+    - deb-sec
+
+- name: pip-sec
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - impacket
+      - dirhunt
+      - crackmapexec
+  tasks:
+    - name: install pip-sec packages
+      pip:
+        name: "{{ item }}"
+        state: present
+        extra_args: --upgrade
+      loop: "{{ packages }}"
+  tags:
+    - pip-sec
+
+- name: pip3-sec
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - pshtt
+  tasks:
+    - name: install pip3-sec packages
+      pip:
+        name: "{{ item }}"
+        executable: pip3
+        state: present
+        extra_args: "{{ packages }}"
+      loop: "{{ packages }}"
+  tags:
+    - pip3-sec
