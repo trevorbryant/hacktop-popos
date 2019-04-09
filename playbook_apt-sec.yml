@@ -27,6 +27,7 @@
       - airgraph-ng
       - kismet
       - wireshark
+      - tshark
       - hunt
       - mdbtools
       - p7zip-full
