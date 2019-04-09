@@ -67,6 +67,7 @@
       - libimage-exiftool-perl
       - steghide
       - beef
+      - gobuster
   tasks:
     - name: install deb-sec packages
       apt:
@@ -112,3 +113,20 @@
       loop: "{{ packages }}"
   tags:
     - pip3-sec
+
+- name: wordlists
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: create wordlist directory
+      file:
+        path: /usr/share/wordlists/dirbuster
+        state: directory
+    - name: apache-user-enum-1.0
+      get_url:
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/apache-user-enum-1.0.txt
+        dest: /usr/share/wordlists/dirbuster/apache-user-enum-1.0.txt
+  tags:
+    - wordlists
+
