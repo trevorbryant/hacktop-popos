@@ -127,6 +127,46 @@
       get_url:
         url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/apache-user-enum-1.0.txt
         dest: /usr/share/wordlists/dirbuster/apache-user-enum-1.0.txt
+    - name: apache-user-enum-2.0.txt
+      get_url: 
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/apache-user-enum-2.0.txt
+        dest: /usr/share/wordlists/dirbuster/apache-user-enum-2.0.txt
+    - name: directory-list-1.0.txt
+      get_url:
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-1.0.txt
+        dest: /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+    - name: directory-list-2.3-big
+      get_url:  
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-big.txt
+        dest: /usr/share/wordlists/dirbuster/directory-list-2.3-big.txt
+    - name: directory-list-2.3-medium
+      get_url:
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-medium.txt
+        dest: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+    - name: directory-list-2.3-small
+      get_url:
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-small.txt
+        dest: /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+    - name: directory-list-lowercase-2.3-big.txt
+      get_url:
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-big.txt
+        dest: /usr/share/wordlists/dirbuster/directory-list-2.3-big.txt
+    - name: directory-list-lowercase-2.3-medium
+      get_url:
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-medium.txt
+        dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+    - name: directory-list-lowercase-2.3-small
+      get_url:
+        url: https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-small.txt
+        dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt
+    - name: rockyou
+      get_url:
+        url: https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+        dest: /usr/share/wordlists/rockyou.txt
+    - name: spy_vs_spy
+      get_url:
+        url: https://www.wirelessvillage.ninja/docs/spy_vs_spy.words
+        dest: /usr/share/wordlists/spy_vs_spy.words
   tags:
     - wordlists
 
