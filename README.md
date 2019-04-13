@@ -20,6 +20,7 @@ The package `python-apt` will need to be present prior to running the playbooks.
 $ apt update
 $ apt -y install python-apt
 ```
+Optionally, many of these tools can be installed by the `forensics-all` package described in [Debian Forensics Environment - essential components](https://packages.debian.org/sid/forensics-all.)
 
 ### Examples
 Perform a dry run:
