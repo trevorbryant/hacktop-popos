@@ -1,18 +1,3 @@
-- name: add kismet gpg key
-  hosts: localhost
-  connection: local
-  tasks:
-    - apt_key:
-        url: https://www.kismetwireless.net/repos/kismet-release.gpg.key
-        state: present
-    - apt_repository:
-        repo: 'deb https://www.kismetwireless.net/repos/apt/git/cosmic cosmic main' 
-        state: present
-        filename: kismet
-        update_cache: yes
-  tags:
-    - repository
-
 - name: deb-utils
   hosts: localhost
   connection: local
@@ -70,8 +55,8 @@
       - hashcat
       - hydra
       - recon-ng
-      - aircrack-ng
-      - airgraph-ng
+        #      - aircrack-ng
+       - airgraph-ng
       - wireshark
       - kismet
       - tshark
@@ -129,6 +114,77 @@
   tags:
     - pip3-sec
 
+- name: install kismet
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: add gpg key
+      apt_key:
+        url: https://www.kismetwireless.net/repos/kismet-release.gpg.key
+        state: present
+    - name: add repository
+      apt_repository:
+        repo: 'deb https://www.kismetwireless.net/repos/apt/git/cosmic cosmic main' 
+        state: present
+        filename: kismet
+        update_cache: yes
+    - name: add user to group
+      user:
+        name: trevor
+        groups: kismet
+        append: yes 
+  tags:
+    - repository
+    - group
+    - gpg_key
+
+- name: install aircrack-ng 1.5.2
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    packages:
+      - autoconf
+      - automake
+      - libtool
+      - shtool
+      - build-essential
+      - pkg-config 
+      - libnl-3-dev 
+      - libnl-genl-3-dev 
+      - libssl-dev 
+      - ethtool 
+      - rfkill 
+      - zlib1g-dev 
+      - libpcap-dev 
+      - libsqlite3-dev 
+      - libpcre3-dev 
+      - libhwloc-dev 
+      - libcmocka-dev 
+      - hostapd 
+      - wpasupplicant 
+      - tcpdump 
+      - screen 
+      - iw
+  tasks:
+    - name: install dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
+    - name: git clone aircrack-ng source
+      git:
+        repo: https://github.com/aircrack-ng/aircrack-ng.git
+        dest: /opt/aircrack-ng
+        version: master
+        #become_user: trevor
+    - name: change dir and install
+      shell: autoreconf -i && ./configure --with-experimental && make && make install && ldconfig
+      args:
+        chdir: /opt/aircrack-ng 
+  tags:
+     - aircrack-ng
+    
 - name: wordlists
   hosts: localhost
   connection: local
