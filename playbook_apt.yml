@@ -20,6 +20,7 @@
       - python3-pip
       - nmap
       - docker.io
+      - speedtest-cli
   tasks:
     - name: install deb-utils packages
       apt:
@@ -177,7 +178,6 @@
         repo: https://github.com/aircrack-ng/aircrack-ng.git
         dest: /opt/aircrack-ng
         version: master
-        #become_user: trevor
     - name: change dir and install
       shell: autoreconf -i && ./configure --with-experimental && make && make install && ldconfig
       args:
