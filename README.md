@@ -5,7 +5,7 @@ Ansible playbooks to install various security tools to localhost.
 In the beginning the idea was to create a set of roles to perform various tasks. To keep it simple, this has been scaled back to utilize the loop feature in Playbooks, and specific plays and tasks for what actually needs to be tasked with greater detailed arguments. This keeps the simplicity of hierarchy.
 
 This branch is tailored for the 18.XX releases of Ubuntu Bionic and will be maintained as needed. Note that there will be packages that will not be backported by the authors and only maintained in newer Ubuntu versions.
-
+  - To use the 1.5 release of `aircrack-ng`, upgrade to Ubuntu Disco.
 ## Testing
 This has been tested on the following distributions:
   - `Ubuntu 18.04.2 LTS`
