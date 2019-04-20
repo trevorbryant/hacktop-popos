@@ -21,6 +21,7 @@
       - nmap
       - docker.io
       - speedtest-cli
+      - mupdf-tools
   tasks:
     - name: install deb-utils packages
       apt:
