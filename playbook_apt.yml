@@ -31,7 +31,7 @@
   tags:
     - deb-utils
 
-- name: install kismet
+- name: kismet repo
   hosts: localhost
   connection: local
   tasks:
@@ -51,9 +51,8 @@
         groups: kismet
         append: yes 
   tags:
-    - repository
-    - group
-    - gpg_key
+    - repo
+    - kismet
 
 - name: deb-sec
   hosts: localhost
@@ -84,7 +83,8 @@
       - aircrack-ng
       - airgraph-ng
       - wireshark
-      - kismet
+        #      - kismet-core
+        #      - kismet
       - tshark
       - hunt
       - mdbtools
