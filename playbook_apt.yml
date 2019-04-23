@@ -22,6 +22,7 @@
       - docker.io
       - speedtest-cli
       - mupdf-tools
+      - whois
   tasks:
     - name: install deb-utils packages
       apt:
