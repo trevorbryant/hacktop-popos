@@ -46,6 +46,10 @@
         state: present
         filename: kismet
         update_cache: yes
+    - name: create kismet group
+      group:
+        name: kismet
+        state: present
     - name: add user to group
       user:
         name: trevor
