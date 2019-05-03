@@ -23,6 +23,9 @@
       - speedtest-cli
       - mupdf-tools
       - whois
+      - rkhunter
+      - clamav
+      - clamav-daemon
   tasks:
     - name: install deb-utils packages
       apt:
