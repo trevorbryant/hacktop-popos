@@ -87,12 +87,11 @@
       - john
       - hashcat
       - hydra
+      - hashid
       - recon-ng
       - aircrack-ng
       - airgraph-ng
       - wireshark
-        #      - kismet-core
-        #      - kismet
       - tshark
       - hunt
       - mdbtools
