@@ -39,6 +39,7 @@
 - name: kismet
   hosts: localhost
   connection: local
+  become: true
   tasks:
     - name: add gpg key
       apt_key:
