@@ -13,6 +13,7 @@
       - rdesktop
       - tmux
       - vim
+      - tree
       - golang-go
       - python
       - python-pip
