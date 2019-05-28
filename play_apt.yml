@@ -96,6 +96,7 @@
       - airgraph-ng
       - wireshark
       - tshark
+      - tcpflow
       - hunt
       - mdbtools
       - pst-utils
@@ -104,6 +105,7 @@
       - steghide
       - beef
       - gobuster
+      - volatility
   tasks:
     - name: install deb-sec packages
       apt:

@@ -1,5 +1,5 @@
-# ansible-playbooks-security
-Ansible playbooks to install various security tools to localhost.
+# ansible-playbooks
+Ansible playbooks to setup initial configurations, install various utilities, and security tools to localhost.
 
 ## Playbooks
 In the beginning the idea was to create a set of roles to perform various tasks. To keep it simple, this has been scaled back to utilize the loop feature in Playbooks, and specific plays and tasks for what actually needs to be tasked with greater detailed arguments. This keeps the simplicity of hierarchy.
