@@ -87,6 +87,8 @@
       - onesixtyone
       - cewl
       - john
+      - fcrackzip
+      - pdfcrack
       - hashcat
       - hydra
       - hashid
@@ -106,6 +108,7 @@
       - beef
       - gobuster
       - volatility
+      - binwalk
   tasks:
     - name: install deb-sec packages
       apt:
