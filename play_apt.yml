@@ -105,6 +105,7 @@
       - p7zip-full
       - libimage-exiftool-perl
       - steghide
+      - zbar-tools 
       - beef
       - gobuster
       - volatility
