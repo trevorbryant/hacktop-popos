@@ -2,7 +2,7 @@
 Ansible playbooks to setup initial configurations, install various utilities, and security tools to localhost.
 
 ## Playbooks
-In the beginning the idea was to create a set of roles to perform various tasks. To keep it simple, this has been scaled back to utilize the loop feature in Playbooks, and specific plays and tasks for what actually needs to be tasked with greater detailed arguments. This keeps the simplicity of hierarchy.
+I needed something to install tools quickly after a new fresh OS install.
 
 This branch is tailored for the disco releases of Ubuntu.
 
@@ -22,12 +22,12 @@ Optionally, many of these tools can be installed by the `forensics-all` package 
 Perform a dry run:
 
 ```bash
-$ sudo ansible-playbook playbook_apt.yml --check
+$ sudo ansible-playbook play_apt.yml --check
 ```
 
 List tasks or tags:
 ```bash
-$ sudo ansible-playbook playbook_apt.yml --list-tasks
+$ sudo ansible-playbook play_apt.yml --list-tasks
 ```
 
 Install or skip specific tasks:
