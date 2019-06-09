@@ -10,11 +10,11 @@ This branch is tailored for the disco releases of Ubuntu.
 This has been tested on disco 19.04.
 
 ### Dependencies
-The package `python-apt` will need to be present prior to running the playbooks. Ansible requires this package as a dependency to the`--check` module.
+Packages to be installed prior to running the playbooks.
 
 ```bash
 $ apt update
-$ apt -y install python-apt
+$ apt -y install python-apt ansible
 ```
 Optionally, many of these tools can be installed by the `forensics-all` package described in [Debian Forensics Environment - essential components](https://packages.debian.org/sid/forensics-all).
 
@@ -32,8 +32,8 @@ $ sudo ansible-playbook playbook_apt.yml --list-tasks
 
 Install or skip specific tasks:
 ```bash
-$ sudo ansible-playbook playbook_apt.yml --tags "deb-utils,pip3-sec"
-$ sudo ansible-playbook playbook_apt.yml --skip-tags "deb-sec,pip-sec"
+$ sudo ansible-playbook play_apt.yml --tags "deb-utils,pip3-sec"
+$ sudo ansible-playbook play_apt.yml --skip-tags "deb-sec,pip-sec"
 ```
 
 Run playbook and all install tools to localhost:
