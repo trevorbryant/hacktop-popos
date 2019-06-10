@@ -39,5 +39,5 @@ $ sudo ansible-playbook play_apt.yml --skip-tags "deb-sec,pip-sec"
 Run playbook and all install tools to localhost:
 
 ```bash
-$ sudo ansible-playbook playbook_apt.yml
+$ sudo ansible-playbook play_apt.yml
 ```
