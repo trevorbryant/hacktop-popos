@@ -4,6 +4,7 @@
   become: true
   vars:
     packages:
+      - unattended-upgrades
       - git
       - ftp
       - jq
@@ -27,11 +28,12 @@
       - rkhunter
       - clamav
       - clamav-daemon
+      - dmg2img
   tasks:
     - name: install deb-utils packages
       apt:
         name: "{{ item }}"
-        state: present
+        state: latest
       loop: "{{ packages }}"
   tags:
     - deb-utils
@@ -135,7 +137,7 @@
     - name: install deb-sec packages
       apt:
         name: "{{ item }}"
-        state: present
+        state: latest
       loop: "{{ packages }}"
   tags:
     - deb-sec
@@ -153,7 +155,7 @@
     - name: install pip-sec packages
       pip:
         name: "{{ item }}"
-        state: present
+        state: latest
         extra_args: --upgrade
       loop: "{{ packages }}"
   tags:
@@ -172,7 +174,7 @@
       pip:
         name: "{{ item }}"
         executable: pip3
-        state: present
+        state: latest
         extra_args: --upgrade
       loop: "{{ packages }}"
   tags:
