@@ -186,9 +186,13 @@
   connection: local
   become: true
   tasks:
-    - name: create wordlist directory
+    - name: create dirbuster directory
       file:
         path: /usr/share/wordlists/dirbuster
+        state: directory
+    - name: create dirb directory
+      file:
+        path: /usr/share/wordlists/dirb
         state: directory
     - name: download wordlists
       get_url:
@@ -217,5 +221,7 @@
             dest: /usr/share/wordlists/rockyou.txt }
         - { src: 'https://www.wirelessvillage.ninja/docs/spy_vs_spy.words',
             dest: /usr/share/wordlists/spy_vs_spy.words }
+        - { src: 'https://raw.githubusercontent.com/v0re/dirb/master/wordlists/common.txt',
+            dest: /usr/share/wordlists/dirb/common.txt }
   tags:
     - wordlists
