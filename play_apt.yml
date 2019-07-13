@@ -15,6 +15,7 @@
       - rdesktop
       - tmux
       - vim
+      - atom
       - tree
       - golang-go
       - python
