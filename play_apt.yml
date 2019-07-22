@@ -183,6 +183,18 @@
   tags:
     - pip3-sec
 
+- name: install gem packages
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: install wpscan
+      gem:
+        name: wpscan
+        state: latest
+  tags:
+    - gems 
+    
 - name: wordlists
   hosts: localhost
   connection: local
