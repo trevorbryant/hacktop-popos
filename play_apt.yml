@@ -100,6 +100,7 @@
       - nbtscan
       - samba-common-bin
       - smbclient
+      - smbmap
       - polenum
       - ldap-utils
       - samba
