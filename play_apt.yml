@@ -87,7 +87,11 @@
       user:
         name: trevor
         groups: kismet
-        append: yes 
+        append: yes
+    - name: install package
+      apt:
+        name: kismet
+        state: latest
   tags:
     - kismet
 
@@ -135,7 +139,7 @@
       - steghide
       - zbar-tools 
       - beef
-      - gobuster
+     # - gobuster change to go install
       - volatility
       - binwalk
   tasks:
