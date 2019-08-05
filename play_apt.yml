@@ -243,5 +243,7 @@
             dest: /usr/share/wordlists/spy_vs_spy.words }
         - { src: 'https://raw.githubusercontent.com/v0re/dirb/master/wordlists/common.txt',
             dest: /usr/share/wordlists/dirb/common.txt }
+        - { src: 'https://wirelessvillage.ninja/docs/cyberpunk.words',
+            dest: /usr/share/wordlists/dirb/cyberpunk.txt }
   tags:
     - wordlists
