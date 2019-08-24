@@ -152,17 +152,18 @@
   tags:
     - deb-sec
 
-- name: pip-sec
+- name: pip
   hosts: localhost
   connection: local
   become: true
   vars:
     packages:
+      - pip_upgrade_outdated 
       - impacket
       - dirhunt
       - crackmapexec
   tasks:
-    - name: install pip-sec packages
+    - name: install pip packages
       pip:
         name: "{{ item }}"
         state: latest
@@ -171,7 +172,7 @@
   tags:
     - pip-sec
 
-- name: pip3-sec
+- name: pip3
   hosts: localhost
   connection: local
   become: true
@@ -180,7 +181,7 @@
       - pshtt
       - stegcracker
   tasks:
-    - name: install pip3-sec packages
+    - name: install pip3 packages
       pip:
         name: "{{ item }}"
         executable: pip3
