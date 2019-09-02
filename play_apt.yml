@@ -129,6 +129,9 @@
       - aircrack-ng
       - airgraph-ng
       - wireshark
+      - wifite
+      - pyrit
+      - pyrit-opencl
       - tshark
       - cowpatty
       - tcpflow
@@ -244,7 +247,7 @@
         - { src: 'https://www.wirelessvillage.ninja/docs/spy_vs_spy.words',
             dest: /usr/share/wordlists/spy_vs_spy.words }
         - { src: 'https://wirelessvillage.ninja/docs/cyberpunk.words',
-            dest: /usr/share/wordlists/dirb/cyberpunk.txt }
+            dest: /usr/share/wordlists/cyberpunk.words }
         - { src: 'https://raw.githubusercontent.com/v0re/dirb/master/wordlists/common.txt',
             dest: /usr/share/wordlists/dirb/common.txt }
   tags:
