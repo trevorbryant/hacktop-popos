@@ -6,6 +6,7 @@
     packages:
       - unattended-upgrades
       - intel-microcode
+      - curl
       - git
       - ftp
       - jq
