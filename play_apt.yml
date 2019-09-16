@@ -2,9 +2,11 @@
   hosts: localhost
   connection: local
   become: true
+  ignore_errors: true
   vars:
     packages:
       - unattended-upgrades
+      - net-tools
       - intel-microcode
       - curl
       - git
@@ -47,6 +49,7 @@
   hosts: localhost
   connection: local
   become: true
+  ignore_errors: true
   tasks:
     - name: add gpg key
       apt_key:
@@ -54,7 +57,7 @@
         state: present
     - name: add repository
       apt_repository:
-        repo: 'deb https://www.kismetwireless.net/repos/apt/git/disco disco main' 
+        repo: 'deb https://www.kismetwireless.net/repos/apt/git/disco disco main'
         state: present
         filename: kismet
         update_cache: yes
@@ -78,6 +81,7 @@
   hosts: localhost
   connection: local
   become: true
+  ignore_errors: true
   vars:
     packages:
       - nbtscan
@@ -120,9 +124,8 @@
       - p7zip-full
       - libimage-exiftool-perl
       - steghide
-      - zbar-tools 
+      - zbar-tools
       - beef
-     # - gobuster change to go install
       - volatility
       - binwalk
   tasks:
@@ -138,9 +141,10 @@
   hosts: localhost
   connection: local
   become: true
+  ignore_errors: true
   vars:
     packages:
-      - pip_upgrade_outdated 
+      - pip_upgrade_outdated
       - impacket
       - dirhunt
       - crackmapexec
@@ -158,6 +162,7 @@
   hosts: localhost
   connection: local
   become: true
+  ignore_errors: true
   vars:
     packages:
       - pshtt
@@ -177,18 +182,20 @@
   hosts: localhost
   connection: local
   become: true
+  ignore_errors: true
   tasks:
     - name: install wpscan
       gem:
         name: wpscan
         state: latest
   tags:
-    - gems 
-    
+    - gems
+
 - name: wordlists
   hosts: localhost
   connection: local
   become: true
+  ignore_errors: true
   tasks:
     - name: create dirbuster directory
       file:
