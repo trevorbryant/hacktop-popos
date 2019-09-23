@@ -167,6 +167,7 @@
     packages:
       - pshtt
       - stegcracker
+      - hash-id
   tasks:
     - name: install pip3 packages
       pip:
