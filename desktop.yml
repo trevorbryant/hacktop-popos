@@ -1,0 +1,242 @@
+- name: deb-utils
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - unattended-upgrades
+      - net-tools
+      - intel-microcode
+      - curl
+      - git
+      - ftp
+      - jq
+      - telnet
+      - netcat
+      - socat
+      - rdesktop
+      - tmux
+      - vim
+      - atom
+      - tree
+      - golang-go
+      - python
+      - python-pip
+      - python3
+      - python3-pip
+      - nmap
+      - docker.io
+      - speedtest-cli
+      - mupdf-tools
+      - whois
+      - rkhunter
+      - clamav
+      - clamav-daemon
+      - dmg2img
+      - lynis
+      - php
+  tasks:
+    - name: install deb-utils packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - deb-utils
+
+- name: kismet
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: add gpg key
+      apt_key:
+        url: https://www.kismetwireless.net/repos/kismet-release.gpg.key
+        state: present
+    - name: add repository
+      apt_repository:
+        repo: 'deb https://www.kismetwireless.net/repos/apt/git/disco disco main'
+        state: present
+        filename: kismet
+        update_cache: yes
+    - name: create kismet group
+      group:
+        name: kismet
+        state: present
+    - name: add user to group
+      user:
+        name: trevor
+        groups: kismet
+        append: yes
+    - name: install package
+      apt:
+        name: kismet
+        state: latest
+  tags:
+    - kismet
+
+- name: deb-sec
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - nbtscan
+      - samba-common-bin
+      - smbclient
+      - smbmap
+      - polenum
+      - ldap-utils
+      - samba
+      - cifs-utils
+      - python-scapy
+      - python3-scapy
+      - scanssh
+      - zenmap
+      - sqlmap
+      - dnsrecon
+      - ncrack
+      - onesixtyone
+      - cewl
+      - john
+      - fcrackzip
+      - pdfcrack
+      - hashcat
+      - hydra
+      - hashid
+      - crunch
+      - recon-ng
+      - aircrack-ng
+      - airgraph-ng
+      - wireshark
+      - wifite
+      - pyrit
+      - pyrit-opencl
+      - tshark
+      - cowpatty
+      - tcpflow
+      - hunt
+      - mdbtools
+      - pst-utils
+      - p7zip-full
+      - libimage-exiftool-perl
+      - steghide
+      - zbar-tools
+      - beef
+      - volatility
+      - binwalk
+      - nikto
+  tasks:
+    - name: install deb-sec packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - deb-sec
+
+- name: pip
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - pip_upgrade_outdated
+      - impacket
+      - dirhunt
+      - crackmapexec
+  tasks:
+    - name: install pip packages
+      pip:
+        name: "{{ item }}"
+        state: latest
+        extra_args: --upgrade
+      loop: "{{ packages }}"
+  tags:
+    - pip-sec
+
+- name: pip3
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - pshtt
+      - stegcracker
+      - hash-id
+  tasks:
+    - name: install pip3 packages
+      pip:
+        name: "{{ item }}"
+        executable: pip3
+        state: latest
+        extra_args: --upgrade
+      loop: "{{ packages }}"
+  tags:
+    - pip3-sec
+
+- name: install gem packages
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: install wpscan
+      gem:
+        name: wpscan
+        state: latest
+  tags:
+    - gems
+
+- name: wordlists
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: create dirbuster directory
+      file:
+        path: /usr/share/wordlists/dirbuster
+        state: directory
+    - name: create dirb directory
+      file:
+        path: /usr/share/wordlists/dirb
+        state: directory
+    - name: download wordlists
+      get_url:
+        url: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+      with_items:
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/apache-user-enum-1.0.txt',
+            dest: /usr/share/wordlists/dirbuster/apache-user-enum-1.0.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/apache-user-enum-2.0.txt',
+            dest: /usr/share/wordlists/dirbuster/apache-user-enum-2.0.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-1.0.txt',
+            dest: /usr/share/wordlists/dirbuster/directory-list-1.0.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-big.txt',
+            dest: /usr/share/wordlists/dirbuster/directory-list-2.3-big.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-medium.txt',
+            dest: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-small.txt',
+            dest: /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-big.txt',
+            dest: /usr/share/wordlists/dirbuster/directory-list-2.3-big.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-medium.txt',
+            dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt }
+        - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-small.txt',
+            dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt }
+        - { src: 'https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt',
+            dest: /usr/share/wordlists/rockyou.txt }
+        - { src: 'https://www.wirelessvillage.ninja/docs/spy_vs_spy.words',
+            dest: /usr/share/wordlists/spy_vs_spy.words }
+        - { src: 'https://wirelessvillage.ninja/docs/cyberpunk.words',
+            dest: /usr/share/wordlists/cyberpunk.words }
+        - { src: 'https://raw.githubusercontent.com/v0re/dirb/master/wordlists/common.txt',
+            dest: /usr/share/wordlists/dirb/common.txt }
+  tags:
+    - wordlists
