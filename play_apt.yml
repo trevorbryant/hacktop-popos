@@ -36,6 +36,7 @@
       - dmg2img
       - lynis
       - php
+      - awscli
   tasks:
     - name: install deb-utils packages
       apt:
