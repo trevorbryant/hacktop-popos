@@ -130,6 +130,7 @@
       - volatility
       - binwalk
       - nikto
+      - macchanger
   tasks:
     - name: install deb-sec packages
       apt:
