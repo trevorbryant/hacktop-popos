@@ -1,3 +1,29 @@
+- name: hosts
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: insert line 127.0.0.1
+      lineinfile:
+        path: /etc/ansible/hosts
+        line: '127.0.0.1'
+  tags:
+   - hosts
+
+- name: ufw
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: enable ufw, enable logging
+      ufw:
+        state: enabled
+        logging: high
+  tags:
+   - ufw
+
 - name: deb-utils
   hosts: localhost
   connection: local
@@ -5,6 +31,7 @@
   ignore_errors: true
   vars:
     packages:
+      - aptitude
       - unattended-upgrades
       - net-tools
       - intel-microcode
@@ -16,6 +43,8 @@
       - netcat
       - socat
       - rdesktop
+      - openvpn
+      - virtualbox
       - tmux
       - vim
       - atom
@@ -36,6 +65,7 @@
       - dmg2img
       - lynis
       - php
+      - awscli
   tasks:
     - name: install deb-utils packages
       apt:
@@ -44,6 +74,25 @@
       loop: "{{ packages }}"
   tags:
     - deb-utils
+
+- name: chats
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+    - slack-desktop
+    - signal-desktop
+    - discord
+  tasks:
+    - name: install chats
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - chats
 
 - name: kismet
   hosts: localhost
@@ -76,6 +125,93 @@
         state: latest
   tags:
     - kismet
+
+- name: bully
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: install bully dependencies
+      apt:
+        name: libpcap-dev
+        state: latest
+    - name: download bully
+      git:
+        repo: 'https://github.com/aanarchyy/bully'
+        dest: /opt/bully
+    - name: make and install
+      make:
+        chdir: /opt/bully/src
+        target: install
+  tags:
+    - bully
+
+- name: hcxdumptool
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: download hcxdumptool
+      git:
+        repo: 'https://github.com/ZerBea/hcxdumptool'
+        dest: /opt/hcxdumptool
+    - name: make and install
+      make:
+        chdir: /opt/hcxdumptool
+        target: install
+  tags:
+    - hcxdumptool
+
+- name: hcxtools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+    - libcurl4-openssl-dev
+    - libssl-dev
+    - zlib1g-dev
+  tasks:
+    - name: install hcxtools dependencies
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+    - name: download hcxtools
+      git:
+        repo: 'https://github.com/ZerBea/hcxtools'
+        dest: /opt/hcxtools
+    - name: make and install
+      make:
+        chdir: /opt/hcxtools
+        target: install
+  tags:
+    - hcxtools
+
+- name: hashcat-utils
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: download hashcat-utils
+      git:
+        repo: 'https://github.com/hashcat/hashcat-utils.git'
+        dest: /opt/hashcat-utils
+    - name: make and install
+      make:
+        chdir: /opt/hashcat-utils/src
+    - copy:
+        src: "{{ item }}"
+        dest: /usr/local/bin/
+        mode: preserve
+      with_fileglob:
+        - /opt/hashcat-utils/src/*.bin
+  tags:
+    - hashcat-utils
 
 - name: deb-sec
   hosts: localhost
@@ -113,6 +249,7 @@
       - airgraph-ng
       - wireshark
       - wifite
+      - pixiewps
       - pyrit
       - pyrit-opencl
       - tshark
@@ -129,6 +266,7 @@
       - volatility
       - binwalk
       - nikto
+      - macchanger
   tasks:
     - name: install deb-sec packages
       apt:
@@ -145,7 +283,6 @@
   ignore_errors: true
   vars:
     packages:
-      - pip_upgrade_outdated
       - impacket
       - dirhunt
       - crackmapexec
@@ -186,6 +323,10 @@
   become: true
   ignore_errors: true
   tasks:
+    - name: install ruby-dev dependency
+      apt:
+        name: ruby-dev
+        state: latest
     - name: install wpscan
       gem:
         name: wpscan
@@ -232,6 +373,8 @@
             dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt }
         - { src: 'https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt',
             dest: /usr/share/wordlists/rockyou.txt }
+        - { src: 'https://www.wirelessvillage.ninja/docs/starwars.words',
+            dest: /usr/share/wordlists/starwars.words }
         - { src: 'https://www.wirelessvillage.ninja/docs/spy_vs_spy.words',
             dest: /usr/share/wordlists/spy_vs_spy.words }
         - { src: 'https://wirelessvillage.ninja/docs/cyberpunk.words',
