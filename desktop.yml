@@ -45,6 +45,7 @@
       - socat
       - rdesktop
       - openvpn
+      - libvpx5
       - virtualbox
       - tmux
       - vim
@@ -67,6 +68,7 @@
       - lynis
       - php
       - awscli
+      - kubectl
   tasks:
     - name: install deb-utils packages
       apt:
