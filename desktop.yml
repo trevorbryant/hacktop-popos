@@ -35,6 +35,7 @@
       - unattended-upgrades
       - net-tools
       - intel-microcode
+      - locate
       - curl
       - git
       - ftp
