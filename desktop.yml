@@ -67,6 +67,7 @@
       - dmg2img
       - lynis
       - php
+      - sqlite3
       - awscli
       - kubectl
   tasks:
