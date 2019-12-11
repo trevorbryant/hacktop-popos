@@ -111,7 +111,7 @@
         state: present
     - name: add repository
       apt_repository:
-        repo: 'deb https://www.kismetwireless.net/repos/apt/git/disco disco main'
+        repo: 'deb https://www.kismetwireless.net/repos/apt/git/eoan eoan main'
         state: present
         filename: kismet
         update_cache: yes
