@@ -71,6 +71,7 @@
       - sqlite3
       - awscli
       - kubectl
+      - ruby-bundler
   tasks:
     - name: install deb-utils packages
       apt:
