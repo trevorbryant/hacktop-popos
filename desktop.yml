@@ -24,6 +24,24 @@
   tags:
    - ufw
 
+name: remove-home-dir
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: remove directories
+      file:
+        path: "{{ item }}" 
+        state: absent
+      with_items:
+        - ~/Documents
+        - ~/Downloads
+        - ~/Pictures
+        - ~/Public
+  tags:
+      - remove-home-dir 
+
 - name: deb-utils
   hosts: localhost
   connection: local
