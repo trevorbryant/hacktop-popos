@@ -35,9 +35,9 @@ name: remove-home-dir
         path: "{{ item }}" 
         state: absent
       with_items:
-        - ~/Documents
-        - ~/Downloads
-        - ~/Pictures
+        - ~/Videos
+        - ~/Music
+        - ~/Templates
         - ~/Public
   tags:
       - remove-home-dir 
