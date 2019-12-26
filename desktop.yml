@@ -52,6 +52,7 @@ name: remove-home-dir
       - aptitude
       - unattended-upgrades
       - net-tools
+      - traceroute
       - nmtui
       - intel-microcode
       - locate
