@@ -179,6 +179,33 @@
   tags:
     - chats
 
+- name: kubectl
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: add gpg key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+    - name: add repository
+      apt_repository:
+        repo: 'deb https://apt.kubernetes.io/ kubernetes-xenial main'
+        state: present
+        filename: kubernetes
+        update_cache: yes
+    - name: install apt-transport-https
+      apt:
+        name: apt-transport-https
+        state: latest
+    - name: install kubectl
+      apt:
+        name: kubectl
+        state: latest
+  tags:
+    - kubectl
+
 - name: kismet
   hosts: localhost
   connection: local
@@ -353,21 +380,18 @@
       gem:
         name: wpscan
         state: latest
-  - name: set go home
-    lineinfile:
-      path: "/home/trevor/.bashrc"
-      line: export GOPATH=$HOME/go
-      create: true
-  - name: set go path
-    lineinfile:
-      path: "/home/trevor/.bashrc"
-      line: export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-      create: true
-  - name: set go path
-    lineinfile:
-      path: "/home/trevor/.profile"
-      line: export GOPATH=$HOME/go
-      create: true
+    - lineinfile:
+        path: "/home/trevor/.bashrc"
+        line: 'export GOPATH=$HOME/go'
+        create: true
+    - lineinfile:
+        path: "/home/trevor/.bashrc"
+        line: 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH'
+        create: true
+    - lineinfile:
+        path: "/home/trevor/.profile"
+        line: 'export GOPATH=$HOME/go'
+        create: true
   tags:
     - gems
 
