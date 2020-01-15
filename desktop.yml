@@ -24,7 +24,7 @@
   tags:
    - ufw
 
-name: remove-home-dir
+- name: remove-home-dir
   hosts: localhost
   connection: local
   become: true
@@ -32,7 +32,7 @@ name: remove-home-dir
   tasks:
     - name: remove directories
       file:
-        path: "{{ item }}" 
+        path: "{{ item }}"
         state: absent
       with_items:
         - ~/Videos
@@ -40,7 +40,7 @@ name: remove-home-dir
         - ~/Templates
         - ~/Public
   tags:
-      - remove-home-dir 
+      - remove-home-dir
 
 - name: deb-utils
   hosts: localhost
@@ -53,7 +53,7 @@ name: remove-home-dir
       - unattended-upgrades
       - net-tools
       - traceroute
-      - nmtui
+      - network-manager
       - intel-microcode
       - locate
       - curl
@@ -65,7 +65,7 @@ name: remove-home-dir
       - socat
       - rdesktop
       - openvpn
-      - libvpx5
+      - libvpx6
       - virtualbox
       - tmux
       - vim
@@ -82,14 +82,11 @@ name: remove-home-dir
       - mupdf-tools
       - whois
       - rkhunter
-      - clamav
-      - clamav-daemon
       - dmg2img
       - lynis
       - php
       - sqlite3
       - awscli
-      - kubectl
       - ruby-bundler
   tasks:
     - name: install deb-utils packages
@@ -356,6 +353,21 @@ name: remove-home-dir
       gem:
         name: wpscan
         state: latest
+  - name: set go home
+    lineinfile:
+      path: "/home/trevor/.bashrc"
+      line: export GOPATH=$HOME/go
+      create: true
+  - name: set go path
+    lineinfile:
+      path: "/home/trevor/.bashrc"
+      line: export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+      create: true
+  - name: set go path
+    lineinfile:
+      path: "/home/trevor/.profile"
+      line: export GOPATH=$HOME/go
+      create: true
   tags:
     - gems
 
