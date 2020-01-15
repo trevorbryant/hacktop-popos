@@ -97,6 +97,69 @@
   tags:
     - deb-utils
 
+- name: deb-sec
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - nbtscan
+      - samba-common-bin
+      - smbclient
+      - smbmap
+      - polenum
+      - ldap-utils
+      - samba
+      - cifs-utils
+      - python-scapy
+      - python3-scapy
+      - scanssh
+      - zenmap
+      - sqlmap
+      - dnsrecon
+      - ncrack
+      - onesixtyone
+      - cewl
+      - john
+      - fcrackzip
+      - pdfcrack
+      - hashcat
+      - hydra
+      - hashid
+      - crunch
+      - recon-ng
+      - aircrack-ng
+      - airgraph-ng
+      - wireshark
+      - wifite
+      - pixiewps
+      - pyrit
+      - pyrit-opencl
+      - tshark
+      - cowpatty
+      - tcpflow
+      - hunt
+      - mdbtools
+      - pst-utils
+      - p7zip-full
+      - libimage-exiftool-perl
+      - steghide
+      - zbar-tools
+      - beef
+      - volatility
+      - binwalk
+      - nikto
+      - macchanger
+  tasks:
+    - name: install deb-sec packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - deb-sec
+
 - name: chats
   hosts: localhost
   connection: local
@@ -235,69 +298,6 @@
   tags:
     - hashcat-utils
 
-- name: deb-sec
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  vars:
-    packages:
-      - nbtscan
-      - samba-common-bin
-      - smbclient
-      - smbmap
-      - polenum
-      - ldap-utils
-      - samba
-      - cifs-utils
-      - python-scapy
-      - python3-scapy
-      - scanssh
-      - zenmap
-      - sqlmap
-      - dnsrecon
-      - ncrack
-      - onesixtyone
-      - cewl
-      - john
-      - fcrackzip
-      - pdfcrack
-      - hashcat
-      - hydra
-      - hashid
-      - crunch
-      - recon-ng
-      - aircrack-ng
-      - airgraph-ng
-      - wireshark
-      - wifite
-      - pixiewps
-      - pyrit
-      - pyrit-opencl
-      - tshark
-      - cowpatty
-      - tcpflow
-      - hunt
-      - mdbtools
-      - pst-utils
-      - p7zip-full
-      - libimage-exiftool-perl
-      - steghide
-      - zbar-tools
-      - beef
-      - volatility
-      - binwalk
-      - nikto
-      - macchanger
-  tasks:
-    - name: install deb-sec packages
-      apt:
-        name: "{{ item }}"
-        state: latest
-      loop: "{{ packages }}"
-  tags:
-    - deb-sec
-
 - name: pip
   hosts: localhost
   connection: local
@@ -339,7 +339,7 @@
   tags:
     - pip3-sec
 
-- name: install gem packages
+- name: install wpscan
   hosts: localhost
   connection: local
   become: true
