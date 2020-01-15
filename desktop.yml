@@ -206,6 +206,30 @@
   tags:
     - kubectl
 
+- name: gcloud
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: add gpg key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        keyring: /usr/share/keyrings/cloud.google.gpg
+        state: present
+    - name: add repository
+      apt_repository:
+        repo: 'deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main'
+        state: present
+        filename: google-cloud-sdk
+        update_cache: yes
+    - name: install google-cloud-sdk
+      apt:
+        name: google-cloud-sdk
+        state: latest
+  tags:
+    - gcloud
+
 - name: kismet
   hosts: localhost
   connection: local
