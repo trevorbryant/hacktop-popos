@@ -151,6 +151,7 @@
       - binwalk
       - nikto
       - macchanger
+      - mdk4
   tasks:
     - name: install deb-sec packages
       apt:
