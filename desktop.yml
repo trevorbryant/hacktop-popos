@@ -49,11 +49,12 @@
   ignore_errors: true
   vars:
     packages:
-      - aptitude
       - unattended-upgrades
       - net-tools
       - traceroute
       - network-manager
+      - nfs-common
+      - cifs-utils
       - intel-microcode
       - locate
       - curl
