@@ -90,7 +90,7 @@
       - docker.io
       - mupdf-tools
       - p7zip-full
-      - upx-cli
+      - upx-ucl
       - rar
       - pst-utils
       - dmg2img
@@ -99,6 +99,7 @@
       - awscli
       - ruby-bundler
       - ruby-dev
+      - obs-studio
   tasks:
     - name: install utility packages
       apt:
@@ -418,6 +419,7 @@
   tags:
     - hcxdumptool
     - crack
+  
 - name: hcxtools
   hosts: localhost
   connection: local
