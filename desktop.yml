@@ -54,7 +54,6 @@
   vars:
     packages:
     - slack-desktop
-    - signal-desktop
     - discord
     - mattermost-desktop
   tasks:
@@ -63,6 +62,20 @@
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
+    - name: add gpg key
+      apt_key:
+        url: https://updates.signal.org/desktop/apt/keys.asc
+        state: present
+    - name: add repository
+      apt_repository:
+        repo: 'deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main'
+        state: latest
+        filename: signal-desktop
+        update_cache: yes
+    - name: install signal-desktop package
+      apt:
+        name: signal-desktop
+        state: latest
   tags:
     - chats
 
@@ -419,7 +432,7 @@
   tags:
     - hcxdumptool
     - crack
-  
+
 - name: hcxtools
   hosts: localhost
   connection: local
