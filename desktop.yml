@@ -17,6 +17,10 @@
   become: true
   ignore_errors: true
   tasks:
+    - name: install package
+      apt:
+        name: ufw
+        state: latest
     - name: enable ufw, enable logging
       ufw:
         state: enabled
