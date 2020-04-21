@@ -90,6 +90,8 @@
       - docker.io
       - mupdf-tools
       - p7zip-full
+      - upx-cli
+      - rar
       - pst-utils
       - dmg2img
       - php
@@ -319,6 +321,7 @@
       - zbar-tools
       - volatility
       - binwalk
+      - stegsnow
   tasks:
     - name: install forensic packages
       apt:
@@ -475,6 +478,7 @@
     packages:
       - pshtt
       - stegcracker
+      - stegpy
       - hash-id
       - impacket
       - dirhunt
