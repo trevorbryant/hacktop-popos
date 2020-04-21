@@ -77,8 +77,6 @@
       - atom
       - tree
       - golang-go
-      - python
-      - python-pip
       - python3
       - python3-pip
       - nmap
@@ -117,7 +115,6 @@
       - ldap-utils
       - samba
       - cifs-utils
-      - python-scapy
       - python3-scapy
       - scanssh
       - zenmap
@@ -356,26 +353,6 @@
   tags:
     - hashcat-utils
 
-- name: pip
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  vars:
-    packages:
-      - impacket
-      - dirhunt
-      - crackmapexec
-  tasks:
-    - name: install pip packages
-      pip:
-        name: "{{ item }}"
-        state: latest
-        extra_args: --upgrade
-      loop: "{{ packages }}"
-  tags:
-    - pip-sec
-
 - name: pip3
   hosts: localhost
   connection: local
@@ -386,6 +363,9 @@
       - pshtt
       - stegcracker
       - hash-id
+      - impacket
+      - dirhunt
+      - crackmapexec
   tasks:
     - name: install pip3 packages
       pip:
