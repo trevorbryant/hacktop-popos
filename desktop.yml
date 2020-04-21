@@ -172,6 +172,7 @@
     - slack-desktop
     - signal-desktop
     - discord
+    - mattermost-desktop
   tasks:
     - name: install chats
       apt:
