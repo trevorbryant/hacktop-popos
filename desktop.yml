@@ -112,6 +112,7 @@
       - ruby-bundler
       - ruby-dev
       - obs-studio
+      - audacity
   tasks:
     - name: install utility packages
       apt:
