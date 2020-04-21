@@ -46,123 +46,6 @@
   tags:
       - remove-home-dir
 
-- name: deb-utils
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  vars:
-    packages:
-      - unattended-upgrades
-      - net-tools
-      - traceroute
-      - network-manager
-      - nfs-common
-      - cifs-utils
-      - intel-microcode
-      - locate
-      - curl
-      - git
-      - ftp
-      - jq
-      - telnet
-      - netcat
-      - socat
-      - rdesktop
-      - openvpn
-      - libvpx6
-      - virtualbox
-      - tmux
-      - vim
-      - atom
-      - tree
-      - golang-go
-      - python3
-      - python3-pip
-      - nmap
-      - docker.io
-      - speedtest-cli
-      - mupdf-tools
-      - whois
-      - rkhunter
-      - dmg2img
-      - lynis
-      - php
-      - sqlite3
-      - awscli
-      - ruby-bundler
-  tasks:
-    - name: install deb-utils packages
-      apt:
-        name: "{{ item }}"
-        state: latest
-      loop: "{{ packages }}"
-  tags:
-    - deb-utils
-
-- name: deb-sec
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  vars:
-    packages:
-      - nbtscan
-      - samba-common-bin
-      - smbclient
-      - smbmap
-      - polenum
-      - ldap-utils
-      - samba
-      - cifs-utils
-      - python3-scapy
-      - scanssh
-      - zenmap
-      - sqlmap
-      - dnsrecon
-      - ncrack
-      - onesixtyone
-      - cewl
-      - john
-      - fcrackzip
-      - pdfcrack
-      - hashcat
-      - hydra
-      - hashid
-      - crunch
-      - recon-ng
-      - aircrack-ng
-      - airgraph-ng
-      - wireshark
-      - wifite
-      - pixiewps
-      - pyrit
-      - pyrit-opencl
-      - tshark
-      - cowpatty
-      - tcpflow
-      - hunt
-      - mdbtools
-      - pst-utils
-      - p7zip-full
-      - libimage-exiftool-perl
-      - steghide
-      - zbar-tools
-      - beef
-      - volatility
-      - binwalk
-      - nikto
-      - macchanger
-      - mdk4
-  tasks:
-    - name: install deb-sec packages
-      apt:
-        name: "{{ item }}"
-        state: latest
-      loop: "{{ packages }}"
-  tags:
-    - deb-sec
-
 - name: chats
   hosts: localhost
   connection: local
@@ -182,6 +65,92 @@
       loop: "{{ packages }}"
   tags:
     - chats
+
+- name: utility tools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - unattended-upgrades
+      - intel-microcode
+      - locate
+      - curl
+      - git
+      - jq
+      - libvpx6
+      - tmux
+      - vim
+      - atom
+      - tree
+      - golang-go
+      - python3
+      - python3-pip
+      - docker.io
+      - mupdf-tools
+      - p7zip-full
+      - pst-utils
+      - dmg2img
+      - php
+      - sqlite3
+      - awscli
+      - ruby-bundler
+      - ruby-dev
+  tasks:
+    - name: install utility packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - utility
+
+- name: network tools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - net-tools
+      - traceroute
+      - network-manager
+      - nfs-common
+      - cifs-utils
+      - telnet
+      - netcat
+      - socat
+      - python3-scapy
+      - rdesktop
+      - openvpn
+      - whois
+      - speedtest-cli
+      - nmap
+      - ftp
+      - samba-common-bin
+      - smbclient
+      - smbmap
+      - polenum
+      - ldap-utils
+      - samba
+      - cifs-utils
+      - nbtscan
+      - scanssh
+      - tcpflow
+      - wireshark
+      - tshark
+      - onesixtyone
+      - dnsrecon
+      - hunt
+  tasks:
+    - name: install network packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - network
 
 - name: kubectl
   hosts: localhost
@@ -209,6 +178,7 @@
         state: latest
   tags:
     - kubectl
+    - cloud
 
 - name: gcloud
   hosts: localhost
@@ -233,149 +203,25 @@
         state: latest
   tags:
     - gcloud
+    - cloud
 
-- name: kismet
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  tasks:
-    - name: add gpg key
-      apt_key:
-        url: https://www.kismetwireless.net/repos/kismet-release.gpg.key
-        state: present
-    - name: add repository
-      apt_repository:
-        repo: 'deb https://www.kismetwireless.net/repos/apt/git/eoan eoan main'
-        state: present
-        filename: kismet
-        update_cache: yes
-    - name: create kismet group
-      group:
-        name: kismet
-        state: present
-    - name: add user to group
-      user:
-        name: trevor
-        groups: kismet
-        append: yes
-    - name: install package
-      apt:
-        name: kismet
-        state: latest
-  tags:
-    - kismet
-
-- name: bully
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  tasks:
-    - name: install bully dependencies
-      apt:
-        name: libpcap-dev
-        state: latest
-    - name: download bully
-      git:
-        repo: 'https://github.com/aanarchyy/bully'
-        dest: /opt/bully
-    - name: make and install
-      make:
-        chdir: /opt/bully/src
-        target: install
-  tags:
-    - bully
-
-- name: hcxdumptool
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  tasks:
-    - name: download hcxdumptool
-      git:
-        repo: 'https://github.com/ZerBea/hcxdumptool'
-        dest: /opt/hcxdumptool
-    - name: make and install
-      make:
-        chdir: /opt/hcxdumptool
-        target: install
-  tags:
-    - hcxdumptool
-
-- name: hcxtools
+- name: database tools
   hosts: localhost
   connection: local
   become: true
   ignore_errors: true
   vars:
     packages:
-    - libcurl4-openssl-dev
-    - libssl-dev
-    - zlib1g-dev
+      - sqlmap
+      - mdbtools
   tasks:
-    - name: install hcxtools dependencies
+    - name: install database packages
       apt:
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
-    - name: download hcxtools
-      git:
-        repo: 'https://github.com/ZerBea/hcxtools'
-        dest: /opt/hcxtools
-    - name: make and install
-      make:
-        chdir: /opt/hcxtools
-        target: install
   tags:
-    - hcxtools
-
-- name: hashcat-utils
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  tasks:
-    - name: download hashcat-utils
-      git:
-        repo: 'https://github.com/hashcat/hashcat-utils.git'
-        dest: /opt/hashcat-utils
-    - name: make and install
-      make:
-        chdir: /opt/hashcat-utils/src
-    - copy:
-        src: "{{ item }}"
-        dest: /usr/local/bin/
-        mode: preserve
-      with_fileglob:
-        - /opt/hashcat-utils/src/*.bin
-  tags:
-    - hashcat-utils
-
-- name: pip3
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  vars:
-    packages:
-      - pshtt
-      - stegcracker
-      - hash-id
-      - impacket
-      - dirhunt
-      - crackmapexec
-  tasks:
-    - name: install pip3 packages
-      pip:
-        name: "{{ item }}"
-        executable: pip3
-        state: latest
-        extra_args: --upgrade
-      loop: "{{ packages }}"
-  tags:
-    - pip3-sec
+    - database
 
 - name: install wpscan
   hosts: localhost
@@ -404,7 +250,246 @@
         line: 'export GOPATH=$HOME/go'
         create: true
   tags:
-    - gems
+    - wpscan
+    - web
+
+- name: web tools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - cewl
+      - beef
+      - nikto
+  tasks:
+    - name: install web packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - web
+
+- name: recon and osint
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - recon-ng
+  tasks:
+    - name: install recon and osint packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - recon
+    - osint
+
+- name: bruteforce tools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - hydra
+  tasks:
+    - name: install bruteforce packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - bruteforce
+
+- name: forensic tools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - libimage-exiftool-perl
+      - steghide
+      - zbar-tools
+      - volatility
+      - binwalk
+  tasks:
+    - name: install forensic packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - forensic
+
+- name: wifi tools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - aircrack-ng
+      - wifite
+      - pixiewps
+      - pyrit
+      - pyrit-opencl
+      - cowpatty
+      - airgraph-ng
+      - macchanger
+      - mdk4
+  tasks:
+    - name: install wifi tools
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - wifi
+
+- name: bully
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: install bully dependencies
+      apt:
+        name: libpcap-dev
+        state: latest
+    - name: download bully
+      git:
+        repo: 'https://github.com/aanarchyy/bully'
+        dest: /opt/bully
+    - name: make and install
+      make:
+        chdir: /opt/bully/src
+        target: install
+  tags:
+    - bully
+    - wifi
+
+- name: cracking tools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - ncrack
+      - john
+      - fcrackzip
+      - pdfcrack
+      - hashcat
+      - hashid
+      - crunch
+  tasks:
+    - name: install cracking tools
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+  tags:
+    - crack
+
+- name: hcxdumptool
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: download hcxdumptool
+      git:
+        repo: 'https://github.com/ZerBea/hcxdumptool'
+        dest: /opt/hcxdumptool
+    - name: make and install
+      make:
+        chdir: /opt/hcxdumptool
+        target: install
+  tags:
+    - hcxdumptool
+    - crack
+- name: hcxtools
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+    - libcurl4-openssl-dev
+    - libssl-dev
+    - zlib1g-dev
+  tasks:
+    - name: install hcxtools dependencies
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"
+    - name: download hcxtools
+      git:
+        repo: 'https://github.com/ZerBea/hcxtools'
+        dest: /opt/hcxtools
+    - name: make and install
+      make:
+        chdir: /opt/hcxtools
+        target: install
+  tags:
+    - hcxtools
+    - crack
+
+- name: hashcat-utils
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: download hashcat-utils
+      git:
+        repo: 'https://github.com/hashcat/hashcat-utils.git'
+        dest: /opt/hashcat-utils
+    - name: make and install
+      make:
+        chdir: /opt/hashcat-utils/src
+    - copy:
+        src: "{{ item }}"
+        dest: /usr/local/bin/
+        mode: preserve
+      with_fileglob:
+        - /opt/hashcat-utils/src/*.bin
+  tags:
+    - hashcat-utils
+    - crack
+
+- name: python3 and pip3
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  vars:
+    packages:
+      - pshtt
+      - stegcracker
+      - hash-id
+      - impacket
+      - dirhunt
+      - crackmapexec
+  tasks:
+    - name: install pip3 packages
+      pip:
+        name: "{{ item }}"
+        executable: pip3
+        state: latest
+        extra_args: --upgrade
+      loop: "{{ packages }}"
+  tags:
+    - pip3
+    - python3
 
 - name: wordlists
   hosts: localhost
