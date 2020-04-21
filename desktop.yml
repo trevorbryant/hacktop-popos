@@ -113,6 +113,8 @@
       - ruby-dev
       - obs-studio
       - audacity
+      - lxd
+      - virt-manager
   tasks:
     - name: install utility packages
       apt:
@@ -294,7 +296,6 @@
       - cewl
       - beef
       - nikto
-      - gobuster
   tasks:
     - name: install web packages
       apt:
