@@ -62,14 +62,14 @@
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
-    - name: add gpg key
+    - name: signal gpg key
       apt_key:
         url: https://updates.signal.org/desktop/apt/keys.asc
         state: present
-    - name: add repository
+    - name: signal repository
       apt_repository:
         repo: 'deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main'
-        state: latest
+        state: present
         filename: signal-desktop
         update_cache: yes
     - name: install signal-desktop package
@@ -95,7 +95,6 @@
       - libvpx6
       - tmux
       - vim
-      - atom
       - tree
       - golang-go
       - python3
@@ -119,8 +118,23 @@
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
+    - name: atom pgp key
+      apt_key:
+        url: https://packagecloud.io/AtomEditor/atom/gpgkey
+        state: present
+    - name: atom repository
+      apt_repository:
+        repo: 'deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main'
+        state: present
+        filename: atom
+        update_cache: yes
+    - name: install atom package
+      apt:
+        name: atom
+        state: latest
   tags:
     - utility
+    - atom
 
 - name: network tools
   hosts: localhost
@@ -174,11 +188,11 @@
   become: true
   ignore_errors: true
   tasks:
-    - name: add gpg key
+    - name: kubernetes gpg key
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
         state: present
-    - name: add repository
+    - name: kubernetes repository
       apt_repository:
         repo: 'deb https://apt.kubernetes.io/ kubernetes-xenial main'
         state: present
@@ -188,7 +202,7 @@
       apt:
         name: apt-transport-https
         state: latest
-    - name: install kubectl
+    - name: install kubectl package
       apt:
         name: kubectl
         state: latest
@@ -202,12 +216,12 @@
   become: true
   ignore_errors: true
   tasks:
-    - name: add gpg key
+    - name: gcloud gpg key
       apt_key:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
         keyring: /usr/share/keyrings/cloud.google.gpg
         state: present
-    - name: add repository
+    - name: gcloud repository
       apt_repository:
         repo: 'deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main'
         state: present
@@ -279,6 +293,7 @@
       - cewl
       - beef
       - nikto
+      - gobuster
   tasks:
     - name: install web packages
       apt:
