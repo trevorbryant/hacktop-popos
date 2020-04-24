@@ -115,6 +115,7 @@
       - audacity
       - lxd
       - virt-manager
+      - neofetch
   tasks:
     - name: install utility packages
       apt:
