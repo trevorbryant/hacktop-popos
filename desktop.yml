@@ -349,6 +349,7 @@
   vars:
     packages:
       - libimage-exiftool-perl
+      - gdb
       - steghide
       - zbar-tools
       - volatility
