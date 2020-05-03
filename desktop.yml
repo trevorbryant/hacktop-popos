@@ -161,6 +161,7 @@
       - whois
       - speedtest-cli
       - nmap
+      - masscan
       - ftp
       - samba-common-bin
       - smbclient
