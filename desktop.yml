@@ -116,6 +116,7 @@
       - lxd
       - virt-manager
       - neofetch
+      - xclip
   tasks:
     - name: install utility packages
       apt:
