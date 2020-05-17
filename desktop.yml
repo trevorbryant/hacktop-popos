@@ -299,6 +299,7 @@
       - cewl
       - beef
       - nikto
+      - wapiti
   tasks:
     - name: install web packages
       apt:
