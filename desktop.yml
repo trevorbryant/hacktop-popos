@@ -358,6 +358,7 @@
       - volatility
       - binwalk
       - stegsnow
+      - hexedit
   tasks:
     - name: install forensic packages
       apt:
