@@ -117,6 +117,7 @@
       - virt-manager
       - neofetch
       - xclip
+      - knockd
   tasks:
     - name: install utility packages
       apt:
