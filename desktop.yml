@@ -432,11 +432,15 @@
       - hashid
       - crunch
   tasks:
-    - name: install cracking tools
+    - name: install cracking tools from apt
       apt:
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
+    - name: install cracking tools from snap
+     snap:
+        name: john-the-ripper
+        state: latest
   tags:
     - crack
 
