@@ -268,7 +268,7 @@
 - name: install wpscan
   hosts: localhost
   connection: local
-  become: true
+  become: false
   ignore_errors: true
   tasks:
     - name: install ruby-dev dependency
@@ -279,18 +279,6 @@
       gem:
         name: wpscan
         state: latest
-    - lineinfile:
-        path: "/home/trevor/.bashrc"
-        line: 'export GOPATH=$HOME/go'
-        create: true
-    - lineinfile:
-        path: "/home/trevor/.bashrc"
-        line: 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH'
-        create: true
-    - lineinfile:
-        path: "/home/trevor/.profile"
-        line: 'export GOPATH=$HOME/go'
-        create: true
   tags:
     - wpscan
     - web
