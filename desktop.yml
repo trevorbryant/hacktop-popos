@@ -120,22 +120,26 @@
       - knockd
       - redis-tools
   tasks:
-    - name: install utility packages
+    - name: install utility packages from apt
       apt:
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
+    - name: install lxd from snap
+      snap:
+        name: lxd
+        sate: latest
     - name: atom pgp key
       apt_key:
         url: https://packagecloud.io/AtomEditor/atom/gpgkey
         state: present
-    - name: atom repository
+    - name: atom repository for apt 
       apt_repository:
         repo: 'deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main'
         state: present
         filename: atom
         update_cache: yes
-    - name: install atom package
+    - name: install atom package from apt
       apt:
         name: atom
         state: latest
