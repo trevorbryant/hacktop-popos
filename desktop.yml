@@ -118,7 +118,7 @@
       - neofetch
       - xclip
       - knockd
-      - erlang-redis-client
+      - redis-tools
   tasks:
     - name: install utility packages
       apt:
