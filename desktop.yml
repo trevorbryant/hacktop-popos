@@ -119,6 +119,7 @@
       - xclip
       - knockd
       - redis-tools
+      - kpcli
   tasks:
     - name: install utility packages from apt
       apt:
