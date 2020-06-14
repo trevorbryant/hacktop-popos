@@ -339,7 +339,7 @@
   tags:
     - bruteforce
 
-- name: forensic tools
+- name: forensic/steg/re tools
   hosts: localhost
   connection: local
   become: true
@@ -354,6 +354,7 @@
       - binwalk
       - stegsnow
       - hexedit
+      - outguess
   tasks:
     - name: install forensic packages
       apt:
@@ -362,6 +363,8 @@
       loop: "{{ packages }}"
   tags:
     - forensic
+    - steg
+    - re
 
 - name: wifi tools
   hosts: localhost
