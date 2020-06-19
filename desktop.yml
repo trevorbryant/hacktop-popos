@@ -355,6 +355,7 @@
       - stegsnow
       - hexedit
       - outguess
+      - stegosuite
   tasks:
     - name: install forensic packages
       apt:
@@ -434,7 +435,7 @@
         state: latest
       loop: "{{ packages }}"
     - name: install cracking tools from snap
-     snap:
+      snap:
         name: john-the-ripper
         state: latest
   tags:
