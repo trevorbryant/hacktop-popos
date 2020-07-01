@@ -356,6 +356,7 @@
       - hexedit
       - outguess
       - stegosuite
+      - pngcheck
   tasks:
     - name: install forensic packages
       apt:
