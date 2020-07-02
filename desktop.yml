@@ -186,6 +186,7 @@
       - onesixtyone
       - dnsrecon
       - hunt
+      - proxychains
   tasks:
     - name: install network packages
       apt:
