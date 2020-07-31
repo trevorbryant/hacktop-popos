@@ -120,6 +120,7 @@
       - knockd
       - redis-tools
       - kpcli
+      - dos2unix
   tasks:
     - name: install utility packages from apt
       apt:
@@ -358,6 +359,7 @@
       - outguess
       - stegosuite
       - pngcheck
+      - vinetto
   tasks:
     - name: install forensic packages
       apt:
