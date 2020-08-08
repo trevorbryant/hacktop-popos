@@ -39,10 +39,10 @@
         path: "{{ item }}"
         state: absent
       with_items:
-        - ~/Videos
-        - ~/Music
-        - ~/Templates
-        - ~/Public
+        - /home/trevor/Videos
+        - /home/trevor/Music
+        - /home/trevor/Templates
+        - /home/trevor/Public
   tags:
       - remove-home-dir
 
@@ -135,7 +135,7 @@
       apt_key:
         url: https://packagecloud.io/AtomEditor/atom/gpgkey
         state: present
-    - name: atom repository for apt 
+    - name: atom repository for apt
       apt_repository:
         repo: 'deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main'
         state: present
