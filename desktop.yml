@@ -53,29 +53,17 @@
   ignore_errors: true
   vars:
     packages:
-    - slack-desktop
-    - discord
-    - mattermost-desktop
+    - com.slack.Slack
+    - com.discordapp.Discord
+    - com.mattermost.Desktop
+    - org.signal.Signal
+    - us.zoom.Zoom
   tasks:
     - name: install chats
-      apt:
+      flatpak:
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
-    - name: signal gpg key
-      apt_key:
-        url: https://updates.signal.org/desktop/apt/keys.asc
-        state: present
-    - name: signal repository
-      apt_repository:
-        repo: 'deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main'
-        state: present
-        filename: signal-desktop
-        update_cache: yes
-    - name: install signal-desktop package
-      apt:
-        name: signal-desktop
-        state: latest
   tags:
     - chats
 
