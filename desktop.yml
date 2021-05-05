@@ -76,6 +76,7 @@
     packages:
       - unattended-upgrades
       - intel-microcode
+      - snapd
       - locate
       - curl
       - git
