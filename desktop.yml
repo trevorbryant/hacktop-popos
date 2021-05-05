@@ -101,7 +101,6 @@
       - ruby-dev
       - obs-studio
       - audacity
-      - lxd
       - virt-manager
       - neofetch
       - xclip
@@ -115,10 +114,6 @@
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
-    - name: install lxd from snap
-      snap:
-        name: lxd
-        sate: latest
     - name: atom pgp key
       apt_key:
         url: https://packagecloud.io/AtomEditor/atom/gpgkey
