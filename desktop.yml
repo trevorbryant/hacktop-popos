@@ -87,7 +87,6 @@
       - golang-go
       - python3
       - python3-pip
-      - docker.io
       - mupdf-tools
       - p7zip-full
       - upx-ucl
@@ -114,18 +113,8 @@
         name: "{{ item }}"
         state: latest
       loop: "{{ packages }}"
-    - name: atom pgp key
-      apt_key:
-        url: https://packagecloud.io/AtomEditor/atom/gpgkey
-        state: present
-    - name: atom repository for apt
-      apt_repository:
-        repo: 'deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main'
-        state: present
-        filename: atom
-        update_cache: yes
-    - name: install atom package from apt
-      apt:
+    - name: install atom package from snap
+      snap:
         name: atom
         state: latest
   tags:
