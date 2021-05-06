@@ -74,6 +74,7 @@
   ignore_errors: true
   vars:
     packages:
+      - gnome-tweaks
       - unattended-upgrades
       - intel-microcode
       - snapd
