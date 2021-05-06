@@ -62,7 +62,7 @@
 - name: chats
   hosts: localhost
   connection: local
-  become: true
+  become: false
   ignore_errors: true
   vars:
     packages:
