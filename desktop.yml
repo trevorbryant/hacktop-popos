@@ -117,15 +117,15 @@
     - name: install atom package from snap
       snap:
         name: atom
-        state: latest
+        state: present
     - name: install kubectl package from snap
       snap:
         name: kubectl
-        state: latest
+        state: present
     - name: install google-cloud-sdk package from snap
       snap:
         name: google-cloud-sdk
-        state: latest
+        state: present
   tags:
     - utility
 
@@ -366,7 +366,7 @@
     - name: install cracking tools from snap
       snap:
         name: john-the-ripper
-        state: latest
+        state: present
   tags:
     - crack
 
