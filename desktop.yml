@@ -76,6 +76,7 @@
       flatpak:
         name: "{{ item }}"
         state: present
+        method: user
       loop: "{{ packages }}"
   tags:
     - chats
