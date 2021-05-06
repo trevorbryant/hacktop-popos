@@ -62,7 +62,7 @@
     - name: install chats
       flatpak:
         name: "{{ item }}"
-        state: latest
+        state: present
       loop: "{{ packages }}"
   tags:
     - chats
