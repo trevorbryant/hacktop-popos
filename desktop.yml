@@ -118,9 +118,16 @@
       snap:
         name: atom
         state: latest
+    - name: install kubectl package from snap
+      snap:
+        name: kubectl
+        state: latest
+    - name: install google-cloud-sdk package from snap
+      snap:
+        name: google-cloud-sdk
+        state: latest
   tags:
     - utility
-    - atom
 
 - name: network tools
   hosts: localhost
@@ -169,59 +176,6 @@
       loop: "{{ packages }}"
   tags:
     - network
-
-- name: kubectl
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  tasks:
-    - name: kubernetes gpg key
-      apt_key:
-        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-        state: present
-    - name: kubernetes repository
-      apt_repository:
-        repo: 'deb https://apt.kubernetes.io/ kubernetes-xenial main'
-        state: present
-        filename: kubernetes
-        update_cache: yes
-    - name: install apt-transport-https
-      apt:
-        name: apt-transport-https
-        state: latest
-    - name: install kubectl package
-      apt:
-        name: kubectl
-        state: latest
-  tags:
-    - kubectl
-    - cloud
-
-- name: gcloud
-  hosts: localhost
-  connection: local
-  become: true
-  ignore_errors: true
-  tasks:
-    - name: gcloud gpg key
-      apt_key:
-        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-        keyring: /usr/share/keyrings/cloud.google.gpg
-        state: present
-    - name: gcloud repository
-      apt_repository:
-        repo: 'deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main'
-        state: present
-        filename: google-cloud-sdk
-        update_cache: yes
-    - name: install google-cloud-sdk
-      apt:
-        name: google-cloud-sdk
-        state: latest
-  tags:
-    - gcloud
-    - cloud
 
 - name: database tools
   hosts: localhost
@@ -354,8 +308,6 @@
       - aircrack-ng
       - wifite
       - pixiewps
-      - pyrit
-      - pyrit-opencl
       - cowpatty
       - airgraph-ng
       - macchanger
