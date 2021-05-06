@@ -463,7 +463,6 @@
   ignore_errors: true
   vars:
     packages:
-      - pshtt
       - stegcracker
       - stegpy
       - hash-id
