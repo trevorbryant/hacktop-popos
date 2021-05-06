@@ -11,6 +11,19 @@
   tags:
    - hosts
 
+- name: updates
+  hosts: localhost
+  connection: local
+  become: true
+  ignore_errors: true
+  tasks:
+    - name: apt update and dist-upgrade
+      apt:
+        update_cache: yes
+        upgrade: dist
+  tags:
+    - upgrade
+
 - name: ufw
   hosts: localhost
   connection: local
