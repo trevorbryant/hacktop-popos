@@ -521,11 +521,11 @@
             dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt }
         - { src: 'https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt',
             dest: /usr/share/wordlists/rockyou.txt }
-        - { src: 'https://www.wirelessvillage.ninja/docs/starwars.words',
+        - { src: 'https://raw.githubusercontent.com/rfhs/wctf-files/master/wordlist/starwars.words',
             dest: /usr/share/wordlists/starwars.words }
-        - { src: 'https://www.wirelessvillage.ninja/docs/spy_vs_spy.words',
+        - { src: 'https://raw.githubusercontent.com/rfhs/wctf-files/master/wordlist/spy_vs_spy.words',
             dest: /usr/share/wordlists/spy_vs_spy.words }
-        - { src: 'https://wirelessvillage.ninja/docs/cyberpunk.words',
+        - { src: 'https://raw.githubusercontent.com/rfhs/wctf-files/master/wordlist/cyberpunk.words',
             dest: /usr/share/wordlists/cyberpunk.words }
         - { src: 'https://raw.githubusercontent.com/v0re/dirb/master/wordlists/common.txt',
             dest: /usr/share/wordlists/dirb/common.txt }
