@@ -1,0 +1,50 @@
+---
+# task file for installing and configuring security tools
+
+- name: add the wordlsits
+  include: wordlists.yml
+  tags:
+    - wordlists
+    - hacker
+
+- name: add network security packages
+  include: network.yml
+  tags: 
+    - network-security
+    - hacker
+
+- name: add wireless security packages
+  include: wireless.yml
+  tags: 
+    - wireless
+    - hacker
+
+- name: add database security packages
+  include: database.yml
+  tags: 
+    - database
+    - hacker
+
+- name: add web security packages
+  include: web.yml
+  tags:
+    - web
+    - hacker
+
+- name: add wpscan via gem
+  include: wpscan.yml
+  tags: 
+    - wpscan
+    - hacker
+
+- name: add recon-osint packages
+  include: recon-osint.yml
+  tags:
+    - recon-osint
+    - hacker
+
+- name: add gobuster package via go
+  include: gobuster.yml
+  tags:
+    - gobuster
+    - hacker

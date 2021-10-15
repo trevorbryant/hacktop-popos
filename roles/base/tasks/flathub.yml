@@ -1,0 +1,9 @@
+---
+# tasks file to ensure flathub repository is available
+
+- name: enable flathub repository
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    method: user

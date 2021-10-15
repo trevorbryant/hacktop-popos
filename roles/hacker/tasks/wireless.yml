@@ -1,0 +1,9 @@
+---
+# task file installing and configuring wireless security packages
+
+- name: install wireless security packages via apt
+  apt:
+    pkg:
+      - pixiewps
+      - cowpatty
+      - macchanger

@@ -1,0 +1,10 @@
+---
+# tasks file installing utility packages via flatpak
+
+- name: install utility packages via flatpak
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop:
+    - io.atom.Atom

@@ -1,0 +1,12 @@
+---
+# task file for removing user directories
+
+- name: remove user directories
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /home/{{ user }}/Videos
+    - /home/{{ user }}/Music
+    - /home/{{ user }}/Templates
+    - /home/{{ user }}/Public

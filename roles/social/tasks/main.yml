@@ -1,0 +1,10 @@
+---
+# tasks file for managing social role
+
+- name: configure flathub repository
+  include: flathub.yml
+  tags: social
+
+- name: install social applications
+  include: social.yml
+  tags: social

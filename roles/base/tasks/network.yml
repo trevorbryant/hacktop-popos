@@ -1,0 +1,39 @@
+---
+# task file installing and configuring networking packages
+
+- name: install network packages via apt
+  become: true
+  ignore_errors: true
+  apt:
+    update_cache: yes
+    pkg:
+      - net-tools
+      - traceroute
+      - network-manager
+      - nfs-common
+      - cifs-utils
+      - telnet
+      - netcat
+      - socat
+      - python3-scapy
+      - rdesktop
+      - openvpn
+      - whois
+      - speedtest-cli
+      - nmap
+      - masscan
+      - ftp
+      - samba-common-bin
+      - smbclient
+      - smbmap
+      - polenum
+      - ldap-utils
+      - samba
+      - cifs-utils
+      - nbtscan
+      - scanssh
+      - tcpflow
+      - wireshark
+      - tshark
+      - proxychains 
+

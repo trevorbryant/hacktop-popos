@@ -1,0 +1,12 @@
+# task file installing and configuring security networking packages
+
+- name: install security network packages via apt                
+  become: true                                                                                                                                                                                                                                                                  
+  ignore_errors: true                                                                                                                       
+  apt:
+    update_cache: yes
+    pkg:
+      - onesixtyone
+      - dnsrecon
+      - hunt
+      - proxychains

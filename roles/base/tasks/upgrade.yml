@@ -1,0 +1,7 @@
+---
+# task file updating cache and upgrading system files
+
+- name: update and upgrade system
+  apt:
+    update_cache: yes
+    upgrade: dist

@@ -1,0 +1,18 @@
+---
+# task file installing and configuring ufw
+
+- name: install ufw
+  apt:
+    name: ufw
+    update_cache: yes
+    state: latest
+
+- name: "ufw: enable service and logging"
+  ufw:
+    state: enabled
+    logging: low
+
+- name: "ufw: allow ssh"
+  ufw:
+    rule: allow
+    port: ssh

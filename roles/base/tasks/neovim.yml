@@ -1,0 +1,25 @@
+---
+# task file to configure neovim in place of vim
+
+- name: remove utility packages via apt
+  become: true
+  ignore_errors: true
+  apt:
+    update_cache: yes
+    name: vim
+    state: absent
+
+- name: install neovim package via apt
+  become: true
+  apt:
+    update_cache: yes
+    name: neovim
+    state: latest
+
+- name: create symbolic link for nvim
+  file:
+    src: /usr/bin/nvim
+    dest: /usr/bin/vim
+    owner: root
+    group: root
+    mode: a+x

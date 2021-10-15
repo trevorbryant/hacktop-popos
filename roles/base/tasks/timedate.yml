@@ -1,0 +1,6 @@
+---
+# task file for configuring tzdata
+
+- name: configure timedate with systemd
+  timezone:
+    name: America/New_York

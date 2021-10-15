@@ -1,0 +1,14 @@
+---
+# tasks file installing and configuring social applications
+
+- name: install social applications via flatpak
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop:
+    - com.discordapp.Discord
+    - com.mattermost.Desktop
+    - com.slack.Slack
+    - org.signal.Signal
+    - us.zoom.Zoom

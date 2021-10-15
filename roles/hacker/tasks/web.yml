@@ -1,0 +1,13 @@
+---
+# task file to install web security tools
+
+- name: install web security packages via apt
+  become: true
+  ignore_errors: true
+  apt:
+    update_cache: yes
+    pkg:
+      - cewl
+      - beef
+      - nikto
+      - wapiti
