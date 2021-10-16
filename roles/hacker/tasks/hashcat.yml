@@ -1,0 +1,33 @@
+---
+# task file to configure and build hashcat and hashcat-utils
+
+- name: install dependencies from apt
+  become: true
+  apt:
+    update_cache: yes
+    pkg:
+      - build-essential
+      - p7zip-full
+
+- name: clone hashcat repository 
+  become: true
+  git:
+    repo: https://github.com/hashcat/hashcat.git
+    dest: /opt/hashcat
+
+- name: make and install hashcat
+  become: true
+  make:
+    chdir: /opt/hashcat
+    target: install
+
+- name: clone hashcat-utils repository
+  become: true
+  git:
+    repo: https://github.com/hashcat/hashcat-utils.git
+    dest: /opt/hashcat-utils
+
+- name: make hashcat-utils
+  become: true
+  make:
+    chdir: /opt/hashcat-utils/src
