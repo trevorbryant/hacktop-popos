@@ -48,3 +48,9 @@
   tags:
     - gobuster
     - hacker
+
+- name: build hashcat from source
+  include: hashcat.yml
+  tags:
+    - hashcat
+    - hacker
