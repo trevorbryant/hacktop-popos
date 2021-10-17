@@ -1,0 +1,35 @@
+---
+# task file to configure and build hcxdumptool and hcxtools
+
+- name: install dependencies from apt
+  become: true
+  apt:
+    update_cache: yes
+    pkg:
+      - libcurl4-openssl-dev
+      - libssl-dev
+      - zlib1g-dev
+
+- name: clone hcxdumptool repository 
+  become: true
+  git:
+    repo: https://github.com/ZerBea/hcxdumptool.git
+    dest: /opt/hcxdumptool
+
+- name: make and install hcxdumptool
+  become: true
+  make:
+    chdir: /opt/hcxdumptool
+    target: install
+
+- name: clone hcxtools repository
+  become: true
+  git:
+    repo: https://github.com/ZerBea/hcxtools.git
+    dest: /opt/hcxtools
+
+- name: make and install hashcat-utils
+  become: true
+  make:
+    chdir: /opt/hcxtools
+    target: install

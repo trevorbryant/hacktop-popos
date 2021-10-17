@@ -1,7 +1,7 @@
 ---
 # task file to install database tools
 
-- name: install database security packages via apt
+- name: install database security packages from apt
   become: true
   ignore_errors: true
   apt:

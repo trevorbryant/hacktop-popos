@@ -1,7 +1,7 @@
 ---
 # task file to install and configure wpscan
 
-- name: install ruby dependencies
+- name: add ruby dependencies
   become: true
   ignore_errors: true
   apt:
@@ -27,4 +27,5 @@
 
 - name: ensure wpscan is updated
   become: false
+  ignore_errors: true
   command: wpscan --update

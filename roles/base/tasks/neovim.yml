@@ -5,7 +5,6 @@
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     name: vim
     state: absent
 
@@ -17,6 +16,7 @@
     state: latest
 
 - name: create symbolic link for nvim
+  become: true
   file:
     src: /usr/bin/nvim
     dest: /usr/bin/vim

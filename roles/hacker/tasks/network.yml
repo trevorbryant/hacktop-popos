@@ -1,7 +1,7 @@
-# task file installing and configuring security networking packages
+# task file installing and configuring network security packages
 
-- name: install security network packages via apt                
-  become: true                                                                                                                                                                                                                                                                  
+- name: add network security packages from apt                
+  become: true
   ignore_errors: true                                                                                                                       
   apt:
     update_cache: yes
@@ -10,3 +10,11 @@
       - dnsrecon
       - hunt
       - proxychains
+      - hydra
+
+- name: add network security packages from pip
+  become: false
+  pip:
+    name:
+      - crackmapexec
+      - impacket

@@ -1,0 +1,20 @@
+---
+# task file to install cracking tools
+
+- name: install cracking tools from apt
+  become: true
+  ignore_errors: true
+  apt:
+    update_cache: yes
+    pkg:
+      - ncrack
+      - fcrackzip
+      - pdfcrack
+      - hashid
+      - crunch
+
+- name: install cracking tools from flatpak
+  flatpak:
+    name: com.openwall.John
+    state: present
+    method: user

@@ -1,0 +1,41 @@
+---
+# task file to add forensic, steganography, and reverse engineering tools
+
+- name: add forensic, steg, and RE tools from apt
+  become: true
+  ignore_errors: true
+  apt:
+    update_cache: yes
+    pkg:
+      - libimage-exiftool-perl
+      - gdb
+      - steghide
+      - zbar-tools
+      - binwalk
+      - stegsnow
+      - hexedit
+      - outguess
+      - stegosuite
+      - pngcheck
+      - vinetto
+
+- name: add ghidra from flatpak
+  flatpak:
+    name: org.ghidra_sre.Ghidra
+    state: present
+    method: user
+
+- name: add volatility from snap
+  snap:
+    name: volatility-phocean
+    state: present
+
+- name: add forensic, steg, and RE tools from apt
+  become: false
+  pip:
+    name:
+      - stegcracker
+      - stegpy
+      - hash-id
+      - xortool
+      - stego-lsb

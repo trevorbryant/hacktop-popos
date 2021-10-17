@@ -31,19 +31,13 @@
     - web
     - hacker
 
-- name: add wpscan via gem
+- name: add wpscan from gem
   include: wpscan.yml
   tags: 
     - wpscan
     - hacker
 
-- name: add recon-osint packages
-  include: recon-osint.yml
-  tags:
-    - recon-osint
-    - hacker
-
-- name: add gobuster package via go
+- name: add gobuster packages from go
   include: gobuster.yml
   tags:
     - gobuster
@@ -53,4 +47,16 @@
   include: hashcat.yml
   tags:
     - hashcat
+    - hacker
+
+- name: add forensic, steg, and RE tools
+  include: for-steg-re.yml
+  tags:
+    - for-steg-re
+    - hacker
+
+- name: add hcxdumptool and hcxtools from source
+  include: hcx.yml
+  tags:
+    - hcx
     - hacker

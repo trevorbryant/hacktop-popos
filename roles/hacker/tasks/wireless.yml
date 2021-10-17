@@ -1,9 +1,13 @@
 ---
 # task file installing and configuring wireless security packages
 
-- name: install wireless security packages via apt
+- name: install wireless security packages from apt
   apt:
     pkg:
+      - aircrack-ng
+      - wifite
       - pixiewps
       - cowpatty
+      - airgraph-ng
       - macchanger
+      - mdk4

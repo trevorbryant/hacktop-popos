@@ -1,13 +1,19 @@
 ---
-# task file to install web security tools
+# task file to install web tools
 
-- name: install web security packages via apt
+- name: add web security packages from apt
   become: true
   ignore_errors: true
   apt:
     update_cache: yes
     pkg:
       - cewl
-      - beef
       - nikto
       - wapiti
+      - recon-ng
+
+- name: add web security packages from pip
+  become: false
+  pip:
+    name:
+      - dirhunt
