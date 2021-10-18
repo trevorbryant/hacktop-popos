@@ -22,17 +22,17 @@ $ sudo ansible-playbook install.yml --check
 List tasks or tags:
 ```bash
 $ ansible-playbook install.yml --list-tasks
-$ ansibel-playbook install.yml --list-tags
+$ ansible-playbook install.yml --list-tags
 ```
 
-Install or skip specific tasks:
+Install or skip specific tags (or tasks):
 ```bash
-$ sudo ansible-playbook install.yml --tags "web,crack" -K
-$ sudo ansible-playbook install.yml --skip-tags "social,wireless" -K
+$ ansible-playbook install.yml --tags "web,crack" -K
+$ ansible-playbook install.yml --skip-tags "social,wireless" -K
 ```
 
 Run playbook and all install tools to localhost:
 
 ```bash
-$ sudo ansible-playbook install.yml -K
+$ ansible-playbook install.yml -K
 ```
