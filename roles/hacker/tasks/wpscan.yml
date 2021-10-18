@@ -1,31 +1,21 @@
 ---
 # task file to install and configure wpscan
 
-- name: add ruby dependencies
+- name: wpscan | add ruby dependencies
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     pkg:
       - ruby-bundler
       - ruby-dev
 
-        #- name: modify .bashrc for ruby env
-        #  blockinfile:
-        #    dest: "/home/{{ user }}/.bashrc"
-        #    block: |
-        #      export PATH="$PATH:/home/trevor/.gem/ruby/2.7.0/bin"
-        #      export GEM_HOME=~/.ruby/
-        #      export PATH="$PATH:~/.ruby/bin"
-        #    insertafter: EOF
-
-- name: install wpscan from ruby gem
+- name: wpscan | install from ruby gem
   become: false
   gem:
     name: wpscan
     state: latest
 
-- name: ensure wpscan is updated
+- name: wpscan | update local database
   become: false
   ignore_errors: true
   command: wpscan --update

@@ -1,11 +1,10 @@
 ---
 # task file to install database tools
 
-- name: install database security packages from apt
+- name: database | install packages from apt
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     pkg:
       - sqlmap
       - mdbtools

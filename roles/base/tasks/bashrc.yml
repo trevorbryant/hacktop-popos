@@ -1,7 +1,7 @@
 ---
 # task to add configuration to .bashrc env
 
-- name: modify .bashrc go env
+- name: .bashrc | add ruby and go env
   blockinfile:
     dest: "/home/{{ user }}/.bashrc"
     block: |

@@ -1,7 +1,8 @@
 ---
 # task file installing and configuring wireless security packages
 
-- name: install wireless security packages from apt
+- name: wireless | install wireless security packages from apt
+  become: true
   apt:
     pkg:
       - aircrack-ng

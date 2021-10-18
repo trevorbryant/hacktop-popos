@@ -1,11 +1,10 @@
 ---
 # task file installing and configuring utility packages
 
-- name: install utility packages via apt
+- name: utilities | install utility packages via apt
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     pkg: 
       - gnome-tweaks
       - unattended-upgrades
@@ -47,3 +46,4 @@
       - ca-certificates
       - gnupg
       - build-essential
+      - google-chrome-stable

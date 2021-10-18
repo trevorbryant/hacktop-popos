@@ -1,11 +1,10 @@
 ---
 # task file installing and configuring networking packages
 
-- name: install network packages via apt
+- name: network | install packages via apt
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     pkg:
       - net-tools
       - traceroute

@@ -1,17 +1,20 @@
 ---
 # task file to add wordlists
 
-- name: create dirbuster directory
+- name: wordlists | create dirbuster directory
+  become: true
   file:
     path: /usr/share/wordlists/dirbuster
     state: directory
 
-- name: create dirb directory
+- name: wordlists | create dirb directory
+  become: true
   file:
     path: /usr/share/wordlists/dirb
     state: directory
 
-- name: download wordlists
+- name: wordlists | download the lists
+  become: true
   get_url:
     url: "{{ item.src }}"
     dest: "{{ item.dest }}"

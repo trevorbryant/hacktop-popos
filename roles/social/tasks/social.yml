@@ -1,7 +1,8 @@
 ---
 # tasks file installing and configuring social applications
 
-- name: install social applications via flatpak
+- name: social | install applications via flatpak
+  become: false
   flatpak:
     name: "{{ item }}"
     state: present

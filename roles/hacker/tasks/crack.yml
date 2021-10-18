@@ -1,11 +1,10 @@
 ---
 # task file to install cracking tools
 
-- name: install cracking tools from apt
+- name: crack | install packages from apt
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     pkg:
       - ncrack
       - fcrackzip
@@ -13,7 +12,8 @@
       - hashid
       - crunch
 
-- name: install cracking tools from flatpak
+- name: crack | install packages from flatpak
+  become: false
   flatpak:
     name: com.openwall.John
     state: present

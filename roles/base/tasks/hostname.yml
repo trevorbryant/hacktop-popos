@@ -1,7 +1,7 @@
 ---
 # task file configuring system hostname
 
-- name: configure hostname with systemd
+- name: hostname | configure hostname with systemd
   become: true
   hostname:
     name: "{{ hostname }}"

@@ -1,62 +1,75 @@
 ---
 # task file for installing and configuring security tools
 
-- name: add the wordlsits
+- name: hacker | add the wordlsits
   include: wordlists.yml
   tags:
     - wordlists
     - hacker
 
-- name: add network security packages
+- name: hacker | add network security packages
   include: network.yml
   tags: 
     - network-security
     - hacker
 
-- name: add wireless security packages
+- name: hacker | add wireless security packages
   include: wireless.yml
   tags: 
     - wireless
     - hacker
 
-- name: add database security packages
+- name: hacker | add bully wireless package
+  include: bully.yml
+  tags:
+    - wireless
+    - bully
+    - hacker
+
+- name: hacker | add database security packages
   include: database.yml
   tags: 
     - database
     - hacker
 
-- name: add web security packages
+- name: hacker | add web security packages
   include: web.yml
   tags:
     - web
     - hacker
 
-- name: add wpscan from gem
+- name: hacker | add wpscan from gem
   include: wpscan.yml
   tags: 
     - wpscan
     - hacker
 
-- name: add gobuster packages from go
+- name: hacker | add gobuster packages from go
   include: gobuster.yml
   tags:
     - gobuster
     - hacker
 
-- name: build hashcat from source
+- name: hacker | build hashcat from source
   include: hashcat.yml
   tags:
     - hashcat
     - hacker
 
-- name: add forensic, steg, and RE tools
+- name: hacker | add forensic, steg, and RE tools
   include: for-steg-re.yml
   tags:
     - for-steg-re
     - hacker
 
-- name: add hcxdumptool and hcxtools from source
+- name: hacker | add hcxdumptool and hcxtools from source
   include: hcx.yml
   tags:
     - hcx
+    - hacker
+
+- name: hacker | add exploitdb from source
+  include: exploitdb.yml
+  tags:
+    - exploitdb
     - hacker

@@ -1,7 +1,7 @@
 ---
 # task file to install and configure gobuster
 
-- name: create go directories in home
+- name: gobuster | create go directories in home
   become: false
   file:
     path: "{{ item }}"
@@ -13,21 +13,11 @@
   - "/home/{{ user }}/go"
   - "/home/{{ user }}/go/bin"
    
-    #- name: modify .bashrc for go env
-    #  blockinfile:
-    #    dest: "/home/{{ user }}/.bashrc"
-    #    block: |
-    #      export GO111MODULE=on
-    #      export GOPATH=$HOME/go
-    #      export GOBIN=$GOPATH/bin
-    #      export PATH=$GOBIN:$PATH:/usr/local/go/bin
-    #    insertafter: EOF
-
-- name: install gobuster
+- name: gobuster | install gobuster
   become: false
   command: go get github.com/OJ/gobuster/v3@latest
   environment:
-    GO111MODULE=on
-    GOPATH={{ ansible_env["HOME"] }}/go
-    GOBIN={{ ansible_env["HOME"] }}/go/bin
-    PATH={{ ansible_env["HOME"] }}/go/bin:{{ ansible_env["PATH"] }}:/usr/local/go/bin
+    GO111MODULE: 'on'
+    GOPATH: '{{ ansible_env["HOME"] }}/go'
+    GOBIN: '{{ ansible_env["HOME"] }}/go/bin'
+    PATH: '{{ ansible_env["HOME"] }}/go/bin:{{ ansible_env["PATH"] }}:/usr/local/go/bin'

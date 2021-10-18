@@ -1,18 +1,17 @@
 ---
 # task file to install web tools
 
-- name: add web security packages from apt
+- name: web | add packages from apt
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     pkg:
       - cewl
       - nikto
       - wapiti
       - recon-ng
 
-- name: add web security packages from pip
+- name: web | add packages from pypi
   become: false
   pip:
     name:

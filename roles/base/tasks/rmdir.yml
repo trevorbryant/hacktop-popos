@@ -1,7 +1,7 @@
 ---
 # task file for removing user directories
 
-- name: remove user directories
+- name: homedir | remove user directories
   file:
     path: "{{ item }}"
     state: absent

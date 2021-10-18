@@ -1,7 +1,8 @@
 ---
 # tasks file to ensure flathub repository is available
 
-- name: enable flathub repository
+- name: flathub | enable repository
+  become: false
   flatpak_remote:
     name: flathub
     state: present

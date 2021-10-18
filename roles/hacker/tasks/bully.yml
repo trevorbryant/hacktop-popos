@@ -1,32 +1,24 @@
 ---
-# task file to configure and build hashcat and hashcat-utils
+# task file to build and install bully
 
-- name: install dependencies from apt
+- name: bully | install dependencies from apt
   become: true
   apt:
-    update_cache: yes
     pkg:
+      - build-essential
       - libpcap-dev
+      - aircrack-ng
+      - pixiewps
 
-- name: clone hashcat repository 
+- name: bully | clone repository 
   become: true
   git:
-    repo: https://github.com/hashcat/hashcat.git
-    dest: /opt/hashcat
+    repo: https://github.com/aanarchyy/bully.git
+    dest: /opt/bully
 
-- name: make and install hashcat
+- name: bully | make and install
   become: true
   make:
-    chdir: /opt/hashcat
+    chdir: /opt/bully/src
     target: install
 
-- name: clone hashcat-utils repository
-  become: true
-  git:
-    repo: https://github.com/hashcat/hashcat-utils.git
-    dest: /opt/hashcat-utils
-
-- name: make hashcat-utils
-  become: true
-  make:
-    chdir: /opt/hashcat-utils/src

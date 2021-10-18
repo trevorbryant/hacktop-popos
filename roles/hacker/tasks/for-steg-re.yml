@@ -1,11 +1,10 @@
 ---
 # task file to add forensic, steganography, and reverse engineering tools
 
-- name: add forensic, steg, and RE tools from apt
+- name: for-steg-re | add packages from apt
   become: true
   ignore_errors: true
   apt:
-    update_cache: yes
     pkg:
       - libimage-exiftool-perl
       - gdb
@@ -19,18 +18,20 @@
       - pngcheck
       - vinetto
 
-- name: add ghidra from flatpak
+- name: for-steg-re | add ghidra from flatpak
+  become: false
   flatpak:
     name: org.ghidra_sre.Ghidra
     state: present
     method: user
 
-- name: add volatility from snap
+- name: for-steg-re | add volatility from snap
+  become: true
   snap:
     name: volatility-phocean
     state: present
 
-- name: add forensic, steg, and RE tools from apt
+- name: for-steg-re | add packages from pypi
   become: false
   pip:
     name:
