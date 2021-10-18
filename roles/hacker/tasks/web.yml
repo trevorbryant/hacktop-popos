@@ -1,0 +1,18 @@
+---
+# task file to install web tools
+
+- name: web | add packages from apt
+  become: true
+  ignore_errors: true
+  apt:
+    pkg:
+      - cewl
+      - nikto
+      - wapiti
+      - recon-ng
+
+- name: web | add packages from pypi
+  become: false
+  pip:
+    name:
+      - dirhunt

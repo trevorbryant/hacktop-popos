@@ -1,0 +1,24 @@
+---
+# task file to build and install bully
+
+- name: bully | install dependencies from apt
+  become: true
+  apt:
+    pkg:
+      - build-essential
+      - libpcap-dev
+      - aircrack-ng
+      - pixiewps
+
+- name: bully | clone repository 
+  become: true
+  git:
+    repo: https://github.com/aanarchyy/bully.git
+    dest: /opt/bully
+
+- name: bully | make and install
+  become: true
+  make:
+    chdir: /opt/bully/src
+    target: install
+

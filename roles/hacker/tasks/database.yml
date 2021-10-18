@@ -1,0 +1,10 @@
+---
+# task file to install database tools
+
+- name: database | install packages from apt
+  become: true
+  ignore_errors: true
+  apt:
+    pkg:
+      - sqlmap
+      - mdbtools

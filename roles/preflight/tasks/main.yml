@@ -1,0 +1,11 @@
+---
+# task file to test preflight configurations
+
+- name: preflight | check if inventory file variables are defined
+  fail: msg="Populate the value of {{ item }} in the inventory file."
+  when: "{{ item }} is undefined or {{ item }} == ''"
+  with_items:
+    - user
+    - hostname
+  tags:
+    - preflight

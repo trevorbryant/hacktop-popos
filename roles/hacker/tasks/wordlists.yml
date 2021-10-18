@@ -1,0 +1,36 @@
+---
+# task file to add wordlists
+
+- name: wordlists | create dirbuster directory
+  become: true
+  file:
+    path: /usr/share/wordlists/dirbuster
+    state: directory
+
+- name: wordlists | create dirb directory
+  become: true
+  file:
+    path: /usr/share/wordlists/dirb
+    state: directory
+
+- name: wordlists | download the lists
+  become: true
+  get_url:
+    url: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/apache-user-enum-1.0.txt', dest: "/usr/share/wordlists/dirbuster/apache-user-enum-1.0.txt" }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/apache-user-enum-2.0.txt', dest: /usr/share/wordlists/dirbuster/apache-user-enum-2.0.txt }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-1.0.txt', dest: /usr/share/wordlists/dirbuster/directory-list-1.0.txt }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-big.txt', dest: /usr/share/wordlists/dirbuster/directory-list-2.3-big.txt }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-medium.txt', dest: /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-2.3-small.txt', dest: /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-big.txt', dest: /usr/share/wordlists/dirbuster/directory-list-2.3-big.txt }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-medium.txt', dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt }
+    - { src: 'https://raw.githubusercontent.com/daviddias/node-dirbuster/master/lists/directory-list-lowercase-2.3-small.txt', dest: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt }
+    - { src: 'https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt', dest: /usr/share/wordlists/rockyou.txt }
+    - { src: 'https://raw.githubusercontent.com/rfhs/wctf-files/master/wordlist/starwars.words', dest: /usr/share/wordlists/starwars.words }
+    - { src: 'https://raw.githubusercontent.com/rfhs/wctf-files/master/wordlist/spy_vs_spy.words', dest: /usr/share/wordlists/spy_vs_spy.words }
+    - { src: 'https://raw.githubusercontent.com/rfhs/wctf-files/master/wordlist/cyberpunk.words', dest: /usr/share/wordlists/cyberpunk.words }
+    - { src: 'https://raw.githubusercontent.com/rfhs/wctf-files/master/wordlist/wigle.words', dest: /usr/share/wordlists/wigle.words }
+    - { src: 'https://raw.githubusercontent.com/v0re/dirb/master/wordlists/common.txt', dest: /usr/share/wordlists/dirb/common.txt }

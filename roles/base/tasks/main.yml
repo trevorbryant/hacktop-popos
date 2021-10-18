@@ -1,0 +1,75 @@
+---
+# task file for base installs and configurations
+
+- name: main | update and upgrade system
+  include: upgrade.yml
+  tags: 
+    - update
+    - base
+
+- name: main | remove user directories
+  include: rmdir.yml
+  tags:
+    - rmdir
+    - base
+
+- name: main | configure ufw
+  include: ufw.yml
+  tags:
+    - ufw
+    - base
+
+- name: main | configure tzdata
+  include: timedate.yml
+  tags:
+    - tzdata
+    - base
+
+- name: main | configure hostname
+  include: hostname.yml
+  tags:
+    - hostname
+    - base
+
+- name: main | install network packages
+  include: network.yml
+  tags:
+    - network
+    - base
+
+- name: main | replace vim with neovim
+  include: neovim.yml
+  tags:
+    - nvim
+    - base
+
+- name: main | install utility packages via apt
+  include: utilities-apt.yml
+  tags:
+    - utilities
+    - base
+
+- name: main | configure .bashrc env
+  include: bashrc.yml
+  tags:
+    - utilities
+    - bashrc
+
+- name: main | configure flathub repository
+  include: flathub.yml
+  tags:
+    - utilities
+    - base
+
+- name: main | install utility packages via flatpak
+  include: utilities-flatpak.yml
+  tags:
+    - utilities
+    - base
+
+- name: main | install google cloud sdk
+  include: google-cloud-sdk.yml
+  tags:
+    - gcloud
+    - base
+

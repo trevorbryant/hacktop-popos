@@ -1,0 +1,29 @@
+---
+# task file installing and configuring google-cloud-sdk
+
+- name: google-cloud-sdk | install package dependencies
+  become: true
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+
+- name: google-cloud-sdk | add the cloud sdk key
+  become: true
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: google-cloud-sdk | add the cloud sdk repository
+  become: true
+  apt_repository:
+    repo: deb https://packages.cloud.google.com/apt cloud-sdk main
+    state: present
+
+- name: google-cloud-sdk | install cloud sdk packages
+  become: true
+  apt:
+    pkg:
+      - google-cloud-sdk
+      - kubectl

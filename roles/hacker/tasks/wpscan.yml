@@ -1,0 +1,21 @@
+---
+# task file to install and configure wpscan
+
+- name: wpscan | add ruby dependencies
+  become: true
+  ignore_errors: true
+  apt:
+    pkg:
+      - ruby-bundler
+      - ruby-dev
+
+- name: wpscan | install from ruby gem
+  become: false
+  gem:
+    name: wpscan
+    state: latest
+
+- name: wpscan | update local database
+  become: false
+  ignore_errors: true
+  command: wpscan --update

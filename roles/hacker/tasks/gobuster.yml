@@ -1,0 +1,23 @@
+---
+# task file to install and configure gobuster
+
+- name: gobuster | create go directories in home
+  become: false
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  with_items:
+  - "/home/{{ user }}/go"
+  - "/home/{{ user }}/go/bin"
+   
+- name: gobuster | install gobuster
+  become: false
+  command: go get github.com/OJ/gobuster/v3@latest
+  environment:
+    GO111MODULE: 'on'
+    GOPATH: '{{ ansible_env["HOME"] }}/go'
+    GOBIN: '{{ ansible_env["HOME"] }}/go/bin'
+    PATH: '{{ ansible_env["HOME"] }}/go/bin:{{ ansible_env["PATH"] }}:/usr/local/go/bin'

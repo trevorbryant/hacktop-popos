@@ -1,43 +1,38 @@
-# ansible-playbooks
-Ansible playbooks to setup initial configurations, install various utilities, and security tools to localhost.
-
-## Playbooks
-I needed something to install tools quickly after a new fresh OS install.
-
-This branch is tailored for the focal releases of Ubuntu 20.04. Originally, I was updating for non-LTS releases. Going forward this will be tailored for _only_ the LTS releases.
+# desktop
+Ansible playbook to setup initial configurations, install various utilities, and security tools to localhost.
 
 ## Testing
-This has been tested on focal 20.04 and is expected to work on other distributions using `apt`.
+This has been built and tested for [Pop!_OS 20.04](https://pop.system76.com/). This playbook _can_ work on other Debian-based distributions. Expect failures when repositories aren't present.
 
 ### Dependencies
-Packages to be installed prior to running the playbooks.
+Install the `ansible` package prior to running the playbook.
 
 ```bash
-$ apt update && apt -y install python-apt ansible
+$ apt -y install ansible
 ```
 
-Optionally, many of these tools can be installed by the `forensics-all` package described in [Debian Forensics Environment - essential components](https://packages.debian.org/sid/forensics-all).
+### Running playbook
+The `preflight` role will check if the `user` and `hostname` variables are defined. If not, the playbook will fail and ask you to populate the variables. These can be found in `preflight/defaults/main.yml`.
 
-### Examples
 Perform a dry run:
-
 ```bash
-$ sudo ansible-playbook desktop.yml --check
+$ sudo ansible-playbook install.yml --check
 ```
 
 List tasks or tags:
 ```bash
-$ sudo ansible-playbook desktop.yml --list-tasks
+$ ansible-playbook install.yml --list-tasks
+$ ansibel-playbook install.yml --list-tags
 ```
 
 Install or skip specific tasks:
 ```bash
-$ sudo ansible-playbook desktop.yml --tags "web,crack"
-$ sudo ansible-playbook desktop.yml --skip-tags "chats,kubectl"
+$ sudo ansible-playbook install.yml --tags "web,crack" -K
+$ sudo ansible-playbook install.yml --skip-tags "social,wireless" -K
 ```
 
 Run playbook and all install tools to localhost:
 
 ```bash
-$ sudo ansible-playbook desktop.yml
+$ sudo ansible-playbook install.yml -K
 ```

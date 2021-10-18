@@ -1,0 +1,6 @@
+---
+# task file to manage role dependencies
+
+allow_duplicates: true
+dependencies:
+  - role: apt

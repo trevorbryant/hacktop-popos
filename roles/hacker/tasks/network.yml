@@ -1,0 +1,19 @@
+# task file installing and configuring network security packages
+
+- name: netsec | add network security packages from apt                
+  become: true
+  ignore_errors: true                                                                                                                       
+  apt:
+    pkg:
+      - onesixtyone
+      - dnsrecon
+      - hunt
+      - proxychains
+      - hydra
+
+- name: netsec | add network security packages from pip
+  become: false
+  pip:
+    name:
+      - crackmapexec
+      - impacket

@@ -1,0 +1,9 @@
+---
+
+- name: configure the hacktop
+  hosts: localhost
+  roles:
+    - preflight
+    - base
+    - social
+    - hacker

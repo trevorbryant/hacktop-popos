@@ -1,0 +1,14 @@
+---
+# task file for preflight checks
+
+- name: user should be defined
+  assert:
+    that:
+    - user is defined and user != ''
+    msg: "Set the value of 'user' in the inventory file."
+
+- name: hostname should be defined
+  assert:
+    that:
+    - hostname is defined and hostname != ''
+    msg: "Set the value of 'hostname' in the inventory file."
