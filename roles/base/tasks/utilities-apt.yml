@@ -47,3 +47,4 @@
       - gnupg
       - build-essential
       - google-chrome-stable
+      - htop
