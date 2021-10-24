@@ -1,12 +1,6 @@
 ---
 # task file to manage custom configurations
 
-- name: configs | prepare directory
-  become: false
-  file:
-    path: "/home/{{ user }}/.config/nvim"
-    state: directory
-
 - name: configs | clone dotfiles repository
   become: false
   git:
@@ -20,6 +14,12 @@
     dest: "/home/{{ user }}/.tmux.conf"
     state: link
 
+- name: configs | prepare nvim directory
+  become: false
+  file:
+    path: "/home/{{ user }}/.config/nvim"
+    state: directory
+
 - name: configs | symlink neovim config
   become: false
   file:
@@ -30,3 +30,17 @@
 - name: configs | load dconf
   become: false
   shell: "/usr/bin/dconf load / < /home/{{ user }}/Documents/dotfiles/dconf/dconf_all"
+
+
+- name: configs | prepare autostart directory
+  become: false
+  file:
+    path: "/home/{{ user }}/.config/autostart"
+    state: directory
+
+- name: configs | symlink autostart
+  become: false
+  file:
+    src: "/home/{{ user }}/Documents/dotfiles/.config/autostart/org.gnome.Terminal.desktop"
+    dest: "/home/{{ user }}/.config/autostart/org.gnome.Terminal.desktop"
+    state: link
