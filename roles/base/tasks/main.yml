@@ -31,6 +31,12 @@
     - hostname
     - base
 
+- name: main | dotfiles
+  include: configs.yml
+  tags:
+    - configs
+    - base
+
 - name: main | install network packages
   include: network.yml
   tags:

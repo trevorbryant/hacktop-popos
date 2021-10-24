@@ -1,0 +1,32 @@
+---
+# task file to manage custom configurations
+
+- name: configs | prepare directory
+  become: false
+  file:
+    path: "/home/{{ user }}/.config/nvim"
+    state: directory
+
+- name: configs | clone dotfiles repository
+  become: false
+  git:
+    repo: https://github.com/trevorbryant/dotfiles.git
+    dest: "/home/{{ user }}/Documents/dotfiles"
+
+- name: configs | symlink tmux config
+  become: false
+  file:
+    src: "/home/{{ user }}/Documents/dotfiles/.tmux.conf"
+    dest: "/home/{{ user }}/.tmux.conf"
+    state: link
+
+- name: configs | symlink neovim config
+  become: false
+  file:
+    src: "/home/{{ user }}/Documents/dotfiles/.config/nvim/init.vim"
+    dest: "/home/{{ user }}/.config/nvim/init.vim"
+    state: link
+
+- name: configs | load dconf
+  become: false
+  shell: "/usr/bin/dconf load / < /home/{{ user }}/Documents/dotfiles/dconf/dconf_all"
