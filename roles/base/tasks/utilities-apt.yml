@@ -48,3 +48,11 @@
       - build-essential
       - google-chrome-stable
       - htop
+
+- name: utilities | uninstall utility packages via apt
+  become: true
+  ignore_errors: true
+  apt:
+    pkg:
+      - gnome-weather
+    state: absent
