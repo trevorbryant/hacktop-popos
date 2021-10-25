@@ -5,12 +5,10 @@
   blockinfile:
     dest: "/home/{{ user }}/.bashrc"
     block: |
-      export PATH="$PATH:/home/trevor/.gem/ruby/2.7.0/bin"
-      export GEM_HOME=~/.ruby/
-      export PATH="$PATH:~/.ruby/bin"
+      export GEM_HOME=$HOME/.gem/ruby/2.7.0/bin
       export GO111MODULE=on
       export GOPATH=$HOME/go
       export GOBIN=$GOPATH/bin
-      export PATH=$GOBIN:$PATH:/usr/local/go/bin
+      export PATH=$PATH:$GEM_HOME:$GOBIN:/usr/local/go/bin
     insertafter: EOF
 

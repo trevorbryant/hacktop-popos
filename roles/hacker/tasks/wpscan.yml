@@ -19,3 +19,6 @@
   become: false
   ignore_errors: true
   command: wpscan --update
+  environment:
+    GEM_HOME: '{{ ansible_env["HOME"] }}/.gem/ruby/2.7.0/bin'
+    PATH: '{{ ansible_env["PATH"] }}:{{ ansible_env["GEM_HOME"] }}'
