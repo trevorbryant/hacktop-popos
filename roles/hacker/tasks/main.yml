@@ -73,3 +73,9 @@
   tags:
     - exploitdb
     - hacker
+
+- name: hacker | add crack packages from apt/flatpak
+  include: crack.yml
+  tags:
+    - crack
+    - hacker

@@ -14,6 +14,7 @@
 
 - name: crack | install packages from flatpak
   become: false
+  ignore_errors: true
   flatpak:
     name: com.openwall.John
     state: present
