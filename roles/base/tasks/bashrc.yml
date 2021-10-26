@@ -5,6 +5,7 @@
   blockinfile:
     dest: "/home/{{ user }}/.bashrc"
     block: |
+      alias vim='nvim'
       export GEM_HOME=$HOME/.gem/ruby/2.7.0/bin
       export GO111MODULE=on
       export GOPATH=$HOME/go
