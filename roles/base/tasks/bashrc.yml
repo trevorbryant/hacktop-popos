@@ -5,6 +5,10 @@
   blockinfile:
     dest: "/home/{{ user }}/.bashrc"
     block: |
+      # tmux
+      shopt -s histappend
+      export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
       # alias
       alias vim='nvim'
       alias discord='flatpak run com.discordapp.Discord'
