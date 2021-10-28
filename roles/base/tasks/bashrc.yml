@@ -5,6 +5,7 @@
   blockinfile:
     dest: "/home/{{ user }}/.bashrc"
     block: |
+      # alias
       alias vim='nvim'
       alias discord='flatpak run com.discordapp.Discord'
       alias mattermost='flatpak run com.mattermost.Desktop'
@@ -14,6 +15,8 @@
       alias ghidra='flatpak run org.ghidra_sre.Ghidra'
       alias signal='flatpak run org.signal.Signal'
       alias zoom='flatpak run us.zoom.Zoom' 
+      
+      # env
       export GEM_HOME=$HOME/.gem/ruby/2.7.0/bin
       export GO111MODULE=on
       export GOPATH=$HOME/go
