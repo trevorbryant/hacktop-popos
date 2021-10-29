@@ -1,4 +1,4 @@
-# desktop
+# hacktop
 Ansible playbook to setup initial configurations, install various utilities, and security tools to localhost.
 
 ## Testing
