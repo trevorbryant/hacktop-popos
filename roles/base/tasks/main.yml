@@ -32,9 +32,9 @@
     - base
 
 - name: main | dotfiles
-  include: configs.yml
+  include: dotfiles.yml
   tags:
-    - configs
+    - dotfiles
     - base
 
 - name: main | install network packages

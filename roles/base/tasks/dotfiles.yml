@@ -1,44 +1,51 @@
 ---
 # task file to manage custom configurations
 
-- name: configs | clone dotfiles repository
+- name: dotfiles | clone dotfiles repository
   become: false
   git:
     repo: https://github.com/trevorbryant/dotfiles.git
     dest: "/home/{{ user }}/Documents/dotfiles"
 
-- name: configs | symlink tmux config
+- name: dotfiles | symlink bash_aliases
+  become: false
+  file:
+    src: "/home/{{ user }}/Documents/dotfiles/.bash_aliases"
+    dest: "/home/{{ user }}/.bash_aliases"
+    state: link
+
+- name: dotfiles | symlink tmux config
   become: false
   file:
     src: "/home/{{ user }}/Documents/dotfiles/.tmux.conf"
     dest: "/home/{{ user }}/.tmux.conf"
     state: link
 
-- name: configs | prepare nvim directory
+- name: dotfiles | prepare nvim directory
   become: false
   file:
     path: "/home/{{ user }}/.config/nvim"
     state: directory
 
-- name: configs | symlink neovim config
+- name: dotfiles | symlink neovim config
   become: false
   file:
     src: "/home/{{ user }}/Documents/dotfiles/.config/nvim/init.vim"
     dest: "/home/{{ user }}/.config/nvim/init.vim"
     state: link
 
-- name: configs | load dconf
+- name: dotfiles | load dconf
   become: false
   shell: "/usr/bin/dconf load / < /home/{{ user }}/Documents/dotfiles/dconf/dconf_all"
 
 
-- name: configs | prepare autostart directory
+- name: dotfiles | prepare autostart directory
   become: false
   file:
     path: "/home/{{ user }}/.config/autostart"
     state: directory
 
-- name: configs | symlink autostart
+- name: dotfiles | symlink autostart
   become: false
   file:
     src: "/home/{{ user }}/Documents/dotfiles/.config/autostart/org.gnome.Terminal.desktop"
