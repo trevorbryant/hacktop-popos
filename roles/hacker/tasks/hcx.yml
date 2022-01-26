@@ -27,6 +27,12 @@
     repo: https://github.com/ZerBea/hcxtools.git
     dest: /opt/hcxtools
 
+- name: hxc | make and install hcxtools
+  become: true
+  make:
+    chdir: /opt/hcxtools/
+    target: install
+
 - name: hcx | make and install hashcat-utils
   become: true
   make:
