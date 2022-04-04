@@ -1,6 +1,8 @@
 # hacktop
 Ansible playbook to setup initial configurations, install various utilities, and security tools to localhost.
 
+Note: I switched to Fedora so I won't be maintaining this anymore.
+
 ## Testing
 This has been built and tested for [Pop!_OS 20.04](https://pop.system76.com/). This playbook _can_ work on other Debian-based distributions. Expect failures when repositories aren't present.
 
